@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { Volume } from './volume';
+import type { SessionItem } from './sessionItem';
 
-export interface StackVolumesResponse {
-  volumes?: Volume[];
+export interface GetSessionsResponse {
+  sessions: SessionItem[];
 }

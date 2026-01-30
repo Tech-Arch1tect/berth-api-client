@@ -29,11 +29,11 @@ import type {
   CreateStackRequest,
   CreateStackResponse,
   ErrorResponse,
-  GetApiV1ServersServeridStacksStacknameEnvironment200,
   GetApiV1ServersServeridStacksStacknameEnvironmentParams,
   ListStacksResponse,
   RawComposeConfig,
   StackDetails,
+  StackEnvironmentResponse,
   StackImagesResponse,
   StackNetworksResponse,
   StackPermissionsResponse,
@@ -569,7 +569,7 @@ export const getApiV1ServersServeridStacksStacknameEnvironment = (
 ) => {
       
       
-      return apiClient<GetApiV1ServersServeridStacksStacknameEnvironment200>(
+      return apiClient<StackEnvironmentResponse>(
       {url: `/api/v1/servers/${serverid}/stacks/${stackname}/environment`, method: 'GET',
         params, signal
     },
