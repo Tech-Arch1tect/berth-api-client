@@ -6,21 +6,15 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface APIKeyScopeResponse {
-  /** @minimum 0 */
-  api_key_id: number;
+export interface RegistryCredentialInfo {
   created_at: string;
   /** @minimum 0 */
   id: number;
-  permission: string;
+  image_pattern?: string;
+  registry_url: string;
   /** @minimum 0 */
-  permission_id: number;
-  /**
-   * @minimum 0
-   * @nullable
-   */
-  server_id: number | null;
-  server_name?: string;
+  server_id: number;
   stack_pattern: string;
   updated_at: string;
+  username: string;
 }

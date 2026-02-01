@@ -5,6 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ServiceEnvironment } from './serviceEnvironment';
+import type { MaintenancePermissions } from './maintenancePermissions';
 
-export type StackEnvironmentResponseServices = {[key: string]: ServiceEnvironment[]};
+export interface PermissionsResponseData {
+  maintenance: MaintenancePermissions;
+}

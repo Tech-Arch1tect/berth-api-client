@@ -32,7 +32,7 @@ import type {
   GetAPIKeyResponse,
   ListAPIKeysResponse,
   ListScopesResponse,
-  MessageResponse2
+  MessageResponse
 } from '.././models';
 
 import { apiClient } from '../../../lib/api';
@@ -205,7 +205,7 @@ export const deleteApiV1ApiKeysId = (
 ) => {
       
       
-      return apiClient<MessageResponse2>(
+      return apiClient<MessageResponse>(
       {url: `/api/v1/api-keys/${id}`, method: 'DELETE', signal
     },
       );
@@ -450,7 +450,7 @@ export const postApiV1ApiKeysIdScopes = (
 ) => {
       
       
-      return apiClient<MessageResponse2>(
+      return apiClient<MessageResponse>(
       {url: `/api/v1/api-keys/${id}/scopes`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: addScopeRequest, signal
@@ -515,7 +515,7 @@ export const deleteApiV1ApiKeysIdScopesScopeId = (
 ) => {
       
       
-      return apiClient<MessageResponse2>(
+      return apiClient<MessageResponse>(
       {url: `/api/v1/api-keys/${id}/scopes/${scopeId}`, method: 'DELETE', signal
     },
       );

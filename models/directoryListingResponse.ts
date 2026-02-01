@@ -5,8 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
+import type { DirectoryListing } from './directoryListing';
 
-export interface EventTypeCountResponse {
-  count: number;
-  event_type: string;
+export interface DirectoryListingResponse {
+  data: DirectoryListing;
+  success: boolean;
 }

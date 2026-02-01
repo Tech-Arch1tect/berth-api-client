@@ -6,15 +6,17 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface RegistryCredentialResponse {
+export interface APIKeyInfo {
   created_at: string;
+  /** @nullable */
+  expires_at: string | null;
   /** @minimum 0 */
   id: number;
-  image_pattern?: string;
-  registry_url: string;
-  /** @minimum 0 */
-  server_id: number;
-  stack_pattern: string;
+  is_active: boolean;
+  key_prefix: string;
+  /** @nullable */
+  last_used_at: string | null;
+  name: string;
+  scope_count: number;
   updated_at: string;
-  username: string;
 }

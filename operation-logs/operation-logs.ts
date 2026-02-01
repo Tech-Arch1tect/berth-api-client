@@ -23,9 +23,9 @@ import type {
 import type {
   ErrorResponse,
   GetApiV1OperationLogsParams,
-  OperationLogDetail,
-  OperationLogStats,
-  PaginatedOperationLogs,
+  OperationLogDetailResponse,
+  OperationLogStatsResponse,
+  PaginatedOperationLogsResponse,
   RunningOperationsResponse
 } from '.././models';
 
@@ -44,7 +44,7 @@ export const getApiV1OperationLogs = (
 ) => {
       
       
-      return apiClient<PaginatedOperationLogs>(
+      return apiClient<PaginatedOperationLogsResponse>(
       {url: `/api/v1/operation-logs`, method: 'GET',
         params, signal
     },
@@ -136,7 +136,7 @@ export const getApiV1OperationLogsByOperationIdOperationId = (
 ) => {
       
       
-      return apiClient<OperationLogDetail>(
+      return apiClient<OperationLogDetailResponse>(
       {url: `/api/v1/operation-logs/by-operation-id/${operationId}`, method: 'GET', signal
     },
       );
@@ -227,7 +227,7 @@ export const getApiV1OperationLogsStats = (
 ) => {
       
       
-      return apiClient<OperationLogStats>(
+      return apiClient<OperationLogStatsResponse>(
       {url: `/api/v1/operation-logs/stats`, method: 'GET', signal
     },
       );
@@ -318,7 +318,7 @@ export const getApiV1OperationLogsId = (
 ) => {
       
       
-      return apiClient<OperationLogDetail>(
+      return apiClient<OperationLogDetailResponse>(
       {url: `/api/v1/operation-logs/${id}`, method: 'GET', signal
     },
       );
