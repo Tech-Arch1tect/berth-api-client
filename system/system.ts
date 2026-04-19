@@ -27,23 +27,33 @@ import type {
 import { apiClient } from '../../../lib/api';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 /**
  * Returns the current version of the Berth application.
  * @summary Get application version
  */
-export const getApiV1Version = (
-
- signal?: AbortSignal
-) => {
+export const getGetApiV1VersionUrl = () => {
 
 
-      return apiClient<GetVersionResponse>(
-      {url: `/api/v1/version`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/version`
+}
+
+export const getApiV1Version = async ( options?: RequestInit): Promise<GetVersionResponse> => {
+
+  return apiClient<GetVersionResponse>(getGetApiV1VersionUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -55,16 +65,16 @@ export const getGetApiV1VersionQueryKey = () => {
     }
 
 
-export const getGetApiV1VersionQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, }
+export const getGetApiV1VersionQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1VersionQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1Version>>> = ({ signal }) => getApiV1Version(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1Version>>> = ({ signal }) => getApiV1Version({ signal, ...requestOptions });
 
 
 
@@ -84,7 +94,7 @@ export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Ver
           TError,
           Awaited<ReturnType<typeof getApiV1Version>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>(
@@ -94,11 +104,11 @@ export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Ver
           TError,
           Awaited<ReturnType<typeof getApiV1Version>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -106,7 +116,7 @@ export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Ver
  */
 
 export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

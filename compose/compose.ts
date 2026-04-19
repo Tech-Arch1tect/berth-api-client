@@ -34,24 +34,35 @@ import type {
 import { apiClient } from '../../../lib/api';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 /**
  * Returns the parsed Docker Compose configuration for a stack. Requires files.read permission.
  * @summary Get compose configuration
  */
-export const getApiV1ServersServeridStacksStacknameCompose = (
-    serverid: number,
-    stackname: string,
- signal?: AbortSignal
-) => {
+export const getGetApiV1ServersServeridStacksStacknameComposeUrl = (serverid: number,
+    stackname: string,) => {
 
 
-      return apiClient<RawComposeConfig>(
-      {url: `/api/v1/servers/${serverid}/stacks/${stackname}/compose`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/servers/${serverid}/stacks/${stackname}/compose`
+}
+
+export const getApiV1ServersServeridStacksStacknameCompose = async (serverid: number,
+    stackname: string, options?: RequestInit): Promise<RawComposeConfig> => {
+
+  return apiClient<RawComposeConfig>(getGetApiV1ServersServeridStacksStacknameComposeUrl(serverid,stackname),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -65,16 +76,16 @@ export const getGetApiV1ServersServeridStacksStacknameComposeQueryKey = (serveri
 
 
 export const getGetApiV1ServersServeridStacksStacknameComposeQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ErrorResponse | void>(serverid: number,
-    stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, }
+    stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1ServersServeridStacksStacknameComposeQueryKey(serverid,stackname);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>> = ({ signal }) => getApiV1ServersServeridStacksStacknameCompose(serverid,stackname, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>> = ({ signal }) => getApiV1ServersServeridStacksStacknameCompose(serverid,stackname, { signal, ...requestOptions });
 
 
 
@@ -95,7 +106,7 @@ export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ErrorResponse | void>(
@@ -106,12 +117,12 @@ export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ErrorResponse | void>(
  serverid: number,
-    stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, }
+    stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -120,7 +131,7 @@ export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited
 
 export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ErrorResponse | void>(
  serverid: number,
-    stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, }
+    stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -138,34 +149,42 @@ export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited
  * Updates the Docker Compose configuration with the specified changes. Supports preview mode to see changes without applying. Requires files.write permission.
  * @summary Update compose configuration
  */
-export const patchApiV1ServersServeridStacksStacknameCompose = (
-    serverid: number,
+export const getPatchApiV1ServersServeridStacksStacknameComposeUrl = (serverid: number,
+    stackname: string,) => {
+
+
+
+
+  return `/api/v1/servers/${serverid}/stacks/${stackname}/compose`
+}
+
+export const patchApiV1ServersServeridStacksStacknameCompose = async (serverid: number,
     stackname: string,
-    updateComposeRequest: UpdateComposeRequest,
- signal?: AbortSignal
-) => {
+    updateComposeRequest: UpdateComposeRequest, options?: RequestInit): Promise<UpdateComposeResponse> => {
 
+  return apiClient<UpdateComposeResponse>(getPatchApiV1ServersServeridStacksStacknameComposeUrl(serverid,stackname),
+  {
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      updateComposeRequest,)
+  }
+);}
 
-      return apiClient<UpdateComposeResponse>(
-      {url: `/api/v1/servers/${serverid}/stacks/${stackname}/compose`, method: 'PATCH',
-      headers: {'Content-Type': 'application/json', },
-      data: updateComposeRequest, signal
-    },
-      );
-    }
 
 
 
 export const getPatchApiV1ServersServeridStacksStacknameComposeMutationOptions = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext> => {
 
 const mutationKey = ['patchApiV1ServersServeridStacksStacknameCompose'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -173,7 +192,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, {serverid: number;stackname: string;data: UpdateComposeRequest}> = (props) => {
           const {serverid,stackname,data} = props ?? {};
 
-          return  patchApiV1ServersServeridStacksStacknameCompose(serverid,stackname,data,)
+          return  patchApiV1ServersServeridStacksStacknameCompose(serverid,stackname,data,requestOptions)
         }
 
 
@@ -191,7 +210,7 @@ const {mutation: mutationOptions} = options ?
  * @summary Update compose configuration
  */
 export const usePatchApiV1ServersServeridStacksStacknameCompose = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>,
         TError,

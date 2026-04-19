@@ -37,23 +37,33 @@ import type {
 import { apiClient } from '../../../lib/api';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 /**
  * Returns detailed Docker system information including disk usage, images, containers, volumes, networks, and build cache
  * @summary Get Docker system information
  */
-export const getApiV1ServersServeridMaintenanceInfo = (
-    serverid: number,
- signal?: AbortSignal
-) => {
+export const getGetApiV1ServersServeridMaintenanceInfoUrl = (serverid: number,) => {
 
 
-      return apiClient<MaintenanceInfo>(
-      {url: `/api/v1/servers/${serverid}/maintenance/info`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/servers/${serverid}/maintenance/info`
+}
+
+export const getApiV1ServersServeridMaintenanceInfo = async (serverid: number, options?: RequestInit): Promise<MaintenanceInfo> => {
+
+  return apiClient<MaintenanceInfo>(getGetApiV1ServersServeridMaintenanceInfoUrl(serverid),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -65,16 +75,16 @@ export const getGetApiV1ServersServeridMaintenanceInfoQueryKey = (serverid: numb
     }
 
 
-export const getGetApiV1ServersServeridMaintenanceInfoQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError, TData>>, }
+export const getGetApiV1ServersServeridMaintenanceInfoQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1ServersServeridMaintenanceInfoQueryKey(serverid);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>> = ({ signal }) => getApiV1ServersServeridMaintenanceInfo(serverid, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>> = ({ signal }) => getApiV1ServersServeridMaintenanceInfo(serverid, { signal, ...requestOptions });
 
 
 
@@ -94,7 +104,7 @@ export function useGetApiV1ServersServeridMaintenanceInfo<TData = Awaited<Return
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridMaintenanceInfo<TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError = ErrorResponse | void>(
@@ -104,11 +114,11 @@ export function useGetApiV1ServersServeridMaintenanceInfo<TData = Awaited<Return
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridMaintenanceInfo<TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError = ErrorResponse | void>(
- serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError, TData>>, }
+ serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -116,7 +126,7 @@ export function useGetApiV1ServersServeridMaintenanceInfo<TData = Awaited<Return
  */
 
 export function useGetApiV1ServersServeridMaintenanceInfo<TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError = ErrorResponse | void>(
- serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError, TData>>, }
+ serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenanceInfo>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -134,17 +144,25 @@ export function useGetApiV1ServersServeridMaintenanceInfo<TData = Awaited<Return
  * Returns the user's read and write permissions for Docker maintenance operations on the server
  * @summary Check maintenance permissions
  */
-export const getApiV1ServersServeridMaintenancePermissions = (
-    serverid: number,
- signal?: AbortSignal
-) => {
+export const getGetApiV1ServersServeridMaintenancePermissionsUrl = (serverid: number,) => {
 
 
-      return apiClient<PermissionsResponse>(
-      {url: `/api/v1/servers/${serverid}/maintenance/permissions`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/servers/${serverid}/maintenance/permissions`
+}
+
+export const getApiV1ServersServeridMaintenancePermissions = async (serverid: number, options?: RequestInit): Promise<PermissionsResponse> => {
+
+  return apiClient<PermissionsResponse>(getGetApiV1ServersServeridMaintenancePermissionsUrl(serverid),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -156,16 +174,16 @@ export const getGetApiV1ServersServeridMaintenancePermissionsQueryKey = (serveri
     }
 
 
-export const getGetApiV1ServersServeridMaintenancePermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError, TData>>, }
+export const getGetApiV1ServersServeridMaintenancePermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1ServersServeridMaintenancePermissionsQueryKey(serverid);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>> = ({ signal }) => getApiV1ServersServeridMaintenancePermissions(serverid, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>> = ({ signal }) => getApiV1ServersServeridMaintenancePermissions(serverid, { signal, ...requestOptions });
 
 
 
@@ -185,7 +203,7 @@ export function useGetApiV1ServersServeridMaintenancePermissions<TData = Awaited
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridMaintenancePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError = ErrorResponse | void>(
@@ -195,11 +213,11 @@ export function useGetApiV1ServersServeridMaintenancePermissions<TData = Awaited
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridMaintenancePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError = ErrorResponse | void>(
- serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError, TData>>, }
+ serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -207,7 +225,7 @@ export function useGetApiV1ServersServeridMaintenancePermissions<TData = Awaited
  */
 
 export function useGetApiV1ServersServeridMaintenancePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError = ErrorResponse | void>(
- serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError, TData>>, }
+ serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridMaintenancePermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -225,33 +243,40 @@ export function useGetApiV1ServersServeridMaintenancePermissions<TData = Awaited
  * Removes unused Docker resources such as images, containers, volumes, networks, or build cache
  * @summary Prune Docker resources
  */
-export const postApiV1ServersServeridMaintenancePrune = (
-    serverid: number,
-    pruneRequest: PruneRequest,
- signal?: AbortSignal
-) => {
+export const getPostApiV1ServersServeridMaintenancePruneUrl = (serverid: number,) => {
 
 
-      return apiClient<PruneResult>(
-      {url: `/api/v1/servers/${serverid}/maintenance/prune`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: pruneRequest, signal
-    },
-      );
-    }
+
+
+  return `/api/v1/servers/${serverid}/maintenance/prune`
+}
+
+export const postApiV1ServersServeridMaintenancePrune = async (serverid: number,
+    pruneRequest: PruneRequest, options?: RequestInit): Promise<PruneResult> => {
+
+  return apiClient<PruneResult>(getPostApiV1ServersServeridMaintenancePruneUrl(serverid),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      pruneRequest,)
+  }
+);}
+
 
 
 
 export const getPostApiV1ServersServeridMaintenancePruneMutationOptions = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridMaintenancePrune>>, TError,{serverid: number;data: PruneRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridMaintenancePrune>>, TError,{serverid: number;data: PruneRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridMaintenancePrune>>, TError,{serverid: number;data: PruneRequest}, TContext> => {
 
 const mutationKey = ['postApiV1ServersServeridMaintenancePrune'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -259,7 +284,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1ServersServeridMaintenancePrune>>, {serverid: number;data: PruneRequest}> = (props) => {
           const {serverid,data} = props ?? {};
 
-          return  postApiV1ServersServeridMaintenancePrune(serverid,data,)
+          return  postApiV1ServersServeridMaintenancePrune(serverid,data,requestOptions)
         }
 
 
@@ -277,7 +302,7 @@ const {mutation: mutationOptions} = options ?
  * @summary Prune Docker resources
  */
 export const usePostApiV1ServersServeridMaintenancePrune = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridMaintenancePrune>>, TError,{serverid: number;data: PruneRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridMaintenancePrune>>, TError,{serverid: number;data: PruneRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1ServersServeridMaintenancePrune>>,
         TError,
@@ -290,33 +315,40 @@ export const usePostApiV1ServersServeridMaintenancePrune = <TError = ErrorRespon
  * Deletes a specific Docker resource (image, container, volume, or network) by ID
  * @summary Delete Docker resource
  */
-export const deleteApiV1ServersServeridMaintenanceResource = (
-    serverid: number,
-    deleteRequest: DeleteRequest,
- signal?: AbortSignal
-) => {
+export const getDeleteApiV1ServersServeridMaintenanceResourceUrl = (serverid: number,) => {
 
 
-      return apiClient<DeleteResult>(
-      {url: `/api/v1/servers/${serverid}/maintenance/resource`, method: 'DELETE',
-      headers: {'Content-Type': 'application/json', },
-      data: deleteRequest, signal
-    },
-      );
-    }
+
+
+  return `/api/v1/servers/${serverid}/maintenance/resource`
+}
+
+export const deleteApiV1ServersServeridMaintenanceResource = async (serverid: number,
+    deleteRequest: DeleteRequest, options?: RequestInit): Promise<DeleteResult> => {
+
+  return apiClient<DeleteResult>(getDeleteApiV1ServersServeridMaintenanceResourceUrl(serverid),
+  {
+    ...options,
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      deleteRequest,)
+  }
+);}
+
 
 
 
 export const getDeleteApiV1ServersServeridMaintenanceResourceMutationOptions = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridMaintenanceResource>>, TError,{serverid: number;data: DeleteRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridMaintenanceResource>>, TError,{serverid: number;data: DeleteRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridMaintenanceResource>>, TError,{serverid: number;data: DeleteRequest}, TContext> => {
 
 const mutationKey = ['deleteApiV1ServersServeridMaintenanceResource'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -324,7 +356,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteApiV1ServersServeridMaintenanceResource>>, {serverid: number;data: DeleteRequest}> = (props) => {
           const {serverid,data} = props ?? {};
 
-          return  deleteApiV1ServersServeridMaintenanceResource(serverid,data,)
+          return  deleteApiV1ServersServeridMaintenanceResource(serverid,data,requestOptions)
         }
 
 
@@ -342,7 +374,7 @@ const {mutation: mutationOptions} = options ?
  * @summary Delete Docker resource
  */
 export const useDeleteApiV1ServersServeridMaintenanceResource = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridMaintenanceResource>>, TError,{serverid: number;data: DeleteRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridMaintenanceResource>>, TError,{serverid: number;data: DeleteRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1ServersServeridMaintenanceResource>>,
         TError,

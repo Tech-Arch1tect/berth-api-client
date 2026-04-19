@@ -28,38 +28,47 @@ import type {
 import { apiClient } from '../../../lib/api';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 /**
  * Returns all active sessions for the authenticated user. The refresh token must be provided to identify the current session.
  * @summary List user sessions
  */
-export const postApiV1Sessions = (
-    getSessionsRequest: GetSessionsRequest,
- signal?: AbortSignal
-) => {
+export const getPostApiV1SessionsUrl = () => {
 
 
-      return apiClient<GetSessionsResponse>(
-      {url: `/api/v1/sessions`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: getSessionsRequest, signal
-    },
-      );
-    }
+
+
+  return `/api/v1/sessions`
+}
+
+export const postApiV1Sessions = async (getSessionsRequest: GetSessionsRequest, options?: RequestInit): Promise<GetSessionsResponse> => {
+
+  return apiClient<GetSessionsResponse>(getPostApiV1SessionsUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      getSessionsRequest,)
+  }
+);}
+
 
 
 
 export const getPostApiV1SessionsMutationOptions = <TError = AuthErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext> => {
 
 const mutationKey = ['postApiV1Sessions'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -67,7 +76,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1Sessions>>, {data: GetSessionsRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  postApiV1Sessions(data,)
+          return  postApiV1Sessions(data,requestOptions)
         }
 
 
@@ -85,7 +94,7 @@ const {mutation: mutationOptions} = options ?
  * @summary List user sessions
  */
 export const usePostApiV1Sessions = <TError = AuthErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1Sessions>>,
         TError,
@@ -98,32 +107,39 @@ export const usePostApiV1Sessions = <TError = AuthErrorResponse | void,
  * Revokes a specific session by ID. The user will be logged out from that device.
  * @summary Revoke a session
  */
-export const postApiV1SessionsRevoke = (
-    revokeSessionRequest: RevokeSessionRequest,
- signal?: AbortSignal
-) => {
+export const getPostApiV1SessionsRevokeUrl = () => {
 
 
-      return apiClient<SessionMessageResponse>(
-      {url: `/api/v1/sessions/revoke`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: revokeSessionRequest, signal
-    },
-      );
-    }
+
+
+  return `/api/v1/sessions/revoke`
+}
+
+export const postApiV1SessionsRevoke = async (revokeSessionRequest: RevokeSessionRequest, options?: RequestInit): Promise<SessionMessageResponse> => {
+
+  return apiClient<SessionMessageResponse>(getPostApiV1SessionsRevokeUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      revokeSessionRequest,)
+  }
+);}
+
 
 
 
 export const getPostApiV1SessionsRevokeMutationOptions = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevoke>>, TError,{data: RevokeSessionRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevoke>>, TError,{data: RevokeSessionRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevoke>>, TError,{data: RevokeSessionRequest}, TContext> => {
 
 const mutationKey = ['postApiV1SessionsRevoke'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -131,7 +147,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1SessionsRevoke>>, {data: RevokeSessionRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  postApiV1SessionsRevoke(data,)
+          return  postApiV1SessionsRevoke(data,requestOptions)
         }
 
 
@@ -149,7 +165,7 @@ const {mutation: mutationOptions} = options ?
  * @summary Revoke a session
  */
 export const usePostApiV1SessionsRevoke = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevoke>>, TError,{data: RevokeSessionRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevoke>>, TError,{data: RevokeSessionRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1SessionsRevoke>>,
         TError,
@@ -162,32 +178,39 @@ export const usePostApiV1SessionsRevoke = <TError = ErrorResponse | void,
  * Revokes all sessions except the current one. For JWT authentication, the refresh token must be provided in the request body.
  * @summary Revoke all other sessions
  */
-export const postApiV1SessionsRevokeAllOthers = (
-    revokeAllOtherSessionsRequest: RevokeAllOtherSessionsRequest,
- signal?: AbortSignal
-) => {
+export const getPostApiV1SessionsRevokeAllOthersUrl = () => {
 
 
-      return apiClient<SessionMessageResponse>(
-      {url: `/api/v1/sessions/revoke-all-others`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: revokeAllOtherSessionsRequest, signal
-    },
-      );
-    }
+
+
+  return `/api/v1/sessions/revoke-all-others`
+}
+
+export const postApiV1SessionsRevokeAllOthers = async (revokeAllOtherSessionsRequest: RevokeAllOtherSessionsRequest, options?: RequestInit): Promise<SessionMessageResponse> => {
+
+  return apiClient<SessionMessageResponse>(getPostApiV1SessionsRevokeAllOthersUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      revokeAllOtherSessionsRequest,)
+  }
+);}
+
 
 
 
 export const getPostApiV1SessionsRevokeAllOthersMutationOptions = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevokeAllOthers>>, TError,{data: RevokeAllOtherSessionsRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevokeAllOthers>>, TError,{data: RevokeAllOtherSessionsRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevokeAllOthers>>, TError,{data: RevokeAllOtherSessionsRequest}, TContext> => {
 
 const mutationKey = ['postApiV1SessionsRevokeAllOthers'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -195,7 +218,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1SessionsRevokeAllOthers>>, {data: RevokeAllOtherSessionsRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  postApiV1SessionsRevokeAllOthers(data,)
+          return  postApiV1SessionsRevokeAllOthers(data,requestOptions)
         }
 
 
@@ -213,7 +236,7 @@ const {mutation: mutationOptions} = options ?
  * @summary Revoke all other sessions
  */
 export const usePostApiV1SessionsRevokeAllOthers = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevokeAllOthers>>, TError,{data: RevokeAllOtherSessionsRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1SessionsRevokeAllOthers>>, TError,{data: RevokeAllOtherSessionsRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1SessionsRevokeAllOthers>>,
         TError,

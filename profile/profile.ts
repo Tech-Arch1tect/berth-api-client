@@ -28,23 +28,33 @@ import type {
 import { apiClient } from '../../../lib/api';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 /**
  * Returns the profile information for the authenticated user including roles and TOTP status.
  * @summary Get current user profile
  */
-export const getApiV1Profile = (
-
- signal?: AbortSignal
-) => {
+export const getGetApiV1ProfileUrl = () => {
 
 
-      return apiClient<GetProfileResponse>(
-      {url: `/api/v1/profile`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/profile`
+}
+
+export const getApiV1Profile = async ( options?: RequestInit): Promise<GetProfileResponse> => {
+
+  return apiClient<GetProfileResponse>(getGetApiV1ProfileUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -56,16 +66,16 @@ export const getGetApiV1ProfileQueryKey = () => {
     }
 
 
-export const getGetApiV1ProfileQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, }
+export const getGetApiV1ProfileQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1ProfileQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1Profile>>> = ({ signal }) => getApiV1Profile(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1Profile>>> = ({ signal }) => getApiV1Profile({ signal, ...requestOptions });
 
 
 
@@ -85,7 +95,7 @@ export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Pro
           TError,
           Awaited<ReturnType<typeof getApiV1Profile>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>(
@@ -95,11 +105,11 @@ export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Pro
           TError,
           Awaited<ReturnType<typeof getApiV1Profile>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -107,7 +117,7 @@ export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Pro
  */
 
 export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

@@ -29,23 +29,33 @@ import type {
 import { apiClient } from '../../../lib/api';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 /**
  * Returns all servers the authenticated user has permission to access
  * @summary List accessible servers
  */
-export const getApiV1Servers = (
-
- signal?: AbortSignal
-) => {
+export const getGetApiV1ServersUrl = () => {
 
 
-      return apiClient<ListServersResponse>(
-      {url: `/api/v1/servers`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/servers`
+}
+
+export const getApiV1Servers = async ( options?: RequestInit): Promise<ListServersResponse> => {
+
+  return apiClient<ListServersResponse>(getGetApiV1ServersUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -57,16 +67,16 @@ export const getGetApiV1ServersQueryKey = () => {
     }
 
 
-export const getGetApiV1ServersQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Servers>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Servers>>, TError, TData>>, }
+export const getGetApiV1ServersQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Servers>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Servers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1ServersQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1Servers>>> = ({ signal }) => getApiV1Servers(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1Servers>>> = ({ signal }) => getApiV1Servers({ signal, ...requestOptions });
 
 
 
@@ -86,7 +96,7 @@ export function useGetApiV1Servers<TData = Awaited<ReturnType<typeof getApiV1Ser
           TError,
           Awaited<ReturnType<typeof getApiV1Servers>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1Servers<TData = Awaited<ReturnType<typeof getApiV1Servers>>, TError = ErrorResponse | void>(
@@ -96,11 +106,11 @@ export function useGetApiV1Servers<TData = Awaited<ReturnType<typeof getApiV1Ser
           TError,
           Awaited<ReturnType<typeof getApiV1Servers>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1Servers<TData = Awaited<ReturnType<typeof getApiV1Servers>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Servers>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Servers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -108,7 +118,7 @@ export function useGetApiV1Servers<TData = Awaited<ReturnType<typeof getApiV1Ser
  */
 
 export function useGetApiV1Servers<TData = Awaited<ReturnType<typeof getApiV1Servers>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Servers>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Servers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -126,17 +136,25 @@ export function useGetApiV1Servers<TData = Awaited<ReturnType<typeof getApiV1Ser
  * Returns stack statistics for a specific server
  * @summary Get server statistics
  */
-export const getApiV1ServersServeridStatistics = (
-    serverid: number,
- signal?: AbortSignal
-) => {
+export const getGetApiV1ServersServeridStatisticsUrl = (serverid: number,) => {
 
 
-      return apiClient<ServerStatisticsResponse>(
-      {url: `/api/v1/servers/${serverid}/statistics`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/servers/${serverid}/statistics`
+}
+
+export const getApiV1ServersServeridStatistics = async (serverid: number, options?: RequestInit): Promise<ServerStatisticsResponse> => {
+
+  return apiClient<ServerStatisticsResponse>(getGetApiV1ServersServeridStatisticsUrl(serverid),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -148,16 +166,16 @@ export const getGetApiV1ServersServeridStatisticsQueryKey = (serverid: number,) 
     }
 
 
-export const getGetApiV1ServersServeridStatisticsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError, TData>>, }
+export const getGetApiV1ServersServeridStatisticsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1ServersServeridStatisticsQueryKey(serverid);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>> = ({ signal }) => getApiV1ServersServeridStatistics(serverid, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>> = ({ signal }) => getApiV1ServersServeridStatistics(serverid, { signal, ...requestOptions });
 
 
 
@@ -177,7 +195,7 @@ export function useGetApiV1ServersServeridStatistics<TData = Awaited<ReturnType<
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridStatistics<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError = ErrorResponse | void>(
@@ -187,11 +205,11 @@ export function useGetApiV1ServersServeridStatistics<TData = Awaited<ReturnType<
           TError,
           Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1ServersServeridStatistics<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError = ErrorResponse | void>(
- serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError, TData>>, }
+ serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -199,7 +217,7 @@ export function useGetApiV1ServersServeridStatistics<TData = Awaited<ReturnType<
  */
 
 export function useGetApiV1ServersServeridStatistics<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError = ErrorResponse | void>(
- serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError, TData>>, }
+ serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStatistics>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

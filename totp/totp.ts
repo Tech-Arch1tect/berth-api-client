@@ -36,38 +36,47 @@ import type {
 import { apiClient } from '../../../lib/api';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 /**
  * Disables two-factor authentication. Requires both the current TOTP code and password for security.
  * @summary Disable TOTP
  */
-export const postApiV1TotpDisable = (
-    tOTPDisableRequest: TOTPDisableRequest,
- signal?: AbortSignal
-) => {
+export const getPostApiV1TotpDisableUrl = () => {
 
 
-      return apiClient<TOTPMessageResponse>(
-      {url: `/api/v1/totp/disable`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: tOTPDisableRequest, signal
-    },
-      );
-    }
+
+
+  return `/api/v1/totp/disable`
+}
+
+export const postApiV1TotpDisable = async (tOTPDisableRequest: TOTPDisableRequest, options?: RequestInit): Promise<TOTPMessageResponse> => {
+
+  return apiClient<TOTPMessageResponse>(getPostApiV1TotpDisableUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      tOTPDisableRequest,)
+  }
+);}
+
 
 
 
 export const getPostApiV1TotpDisableMutationOptions = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext> => {
 
 const mutationKey = ['postApiV1TotpDisable'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -75,7 +84,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1TotpDisable>>, {data: TOTPDisableRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  postApiV1TotpDisable(data,)
+          return  postApiV1TotpDisable(data,requestOptions)
         }
 
 
@@ -93,7 +102,7 @@ const {mutation: mutationOptions} = options ?
  * @summary Disable TOTP
  */
 export const usePostApiV1TotpDisable = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1TotpDisable>>,
         TError,
@@ -106,32 +115,39 @@ export const usePostApiV1TotpDisable = <TError = ErrorResponse | void,
  * Enables two-factor authentication after verifying the TOTP code from the authenticator app.
  * @summary Enable TOTP
  */
-export const postApiV1TotpEnable = (
-    tOTPEnableRequest: TOTPEnableRequest,
- signal?: AbortSignal
-) => {
+export const getPostApiV1TotpEnableUrl = () => {
 
 
-      return apiClient<TOTPMessageResponse>(
-      {url: `/api/v1/totp/enable`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: tOTPEnableRequest, signal
-    },
-      );
-    }
+
+
+  return `/api/v1/totp/enable`
+}
+
+export const postApiV1TotpEnable = async (tOTPEnableRequest: TOTPEnableRequest, options?: RequestInit): Promise<TOTPMessageResponse> => {
+
+  return apiClient<TOTPMessageResponse>(getPostApiV1TotpEnableUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      tOTPEnableRequest,)
+  }
+);}
+
 
 
 
 export const getPostApiV1TotpEnableMutationOptions = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext> => {
 
 const mutationKey = ['postApiV1TotpEnable'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -139,7 +155,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1TotpEnable>>, {data: TOTPEnableRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  postApiV1TotpEnable(data,)
+          return  postApiV1TotpEnable(data,requestOptions)
         }
 
 
@@ -157,7 +173,7 @@ const {mutation: mutationOptions} = options ?
  * @summary Enable TOTP
  */
 export const usePostApiV1TotpEnable = <TError = ErrorResponse | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1TotpEnable>>,
         TError,
@@ -170,17 +186,25 @@ export const usePostApiV1TotpEnable = <TError = ErrorResponse | void,
  * Returns the QR code URI and secret for setting up two-factor authentication. Only available if TOTP is not already enabled.
  * @summary Get TOTP setup information
  */
-export const getApiV1TotpSetup = (
-
- signal?: AbortSignal
-) => {
+export const getGetApiV1TotpSetupUrl = () => {
 
 
-      return apiClient<TOTPSetupResponse>(
-      {url: `/api/v1/totp/setup`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/totp/setup`
+}
+
+export const getApiV1TotpSetup = async ( options?: RequestInit): Promise<TOTPSetupResponse> => {
+
+  return apiClient<TOTPSetupResponse>(getGetApiV1TotpSetupUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -192,16 +216,16 @@ export const getGetApiV1TotpSetupQueryKey = () => {
     }
 
 
-export const getGetApiV1TotpSetupQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, }
+export const getGetApiV1TotpSetupQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1TotpSetupQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1TotpSetup>>> = ({ signal }) => getApiV1TotpSetup(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1TotpSetup>>> = ({ signal }) => getApiV1TotpSetup({ signal, ...requestOptions });
 
 
 
@@ -221,7 +245,7 @@ export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1T
           TError,
           Awaited<ReturnType<typeof getApiV1TotpSetup>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ErrorResponse | void>(
@@ -231,11 +255,11 @@ export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1T
           TError,
           Awaited<ReturnType<typeof getApiV1TotpSetup>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -243,7 +267,7 @@ export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1T
  */
 
 export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -261,17 +285,25 @@ export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1T
  * Returns whether two-factor authentication is enabled for the authenticated user.
  * @summary Get TOTP status
  */
-export const getApiV1TotpStatus = (
-
- signal?: AbortSignal
-) => {
+export const getGetApiV1TotpStatusUrl = () => {
 
 
-      return apiClient<TOTPStatusResponse>(
-      {url: `/api/v1/totp/status`, method: 'GET', signal
-    },
-      );
-    }
+
+
+  return `/api/v1/totp/status`
+}
+
+export const getApiV1TotpStatus = async ( options?: RequestInit): Promise<TOTPStatusResponse> => {
+
+  return apiClient<TOTPStatusResponse>(getGetApiV1TotpStatusUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
 
 
 
@@ -283,16 +315,16 @@ export const getGetApiV1TotpStatusQueryKey = () => {
     }
 
 
-export const getGetApiV1TotpStatusQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, }
+export const getGetApiV1TotpStatusQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetApiV1TotpStatusQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1TotpStatus>>> = ({ signal }) => getApiV1TotpStatus(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1TotpStatus>>> = ({ signal }) => getApiV1TotpStatus({ signal, ...requestOptions });
 
 
 
@@ -312,7 +344,7 @@ export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1
           TError,
           Awaited<ReturnType<typeof getApiV1TotpStatus>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ErrorResponse | void>(
@@ -322,11 +354,11 @@ export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1
           TError,
           Awaited<ReturnType<typeof getApiV1TotpStatus>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -334,7 +366,7 @@ export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1
  */
 
 export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ErrorResponse | void>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
