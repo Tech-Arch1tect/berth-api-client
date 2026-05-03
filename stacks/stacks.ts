@@ -25,22 +25,22 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  CanCreateStackResponse,
   CreateStackRequest,
-  CreateStackResponse,
-  ErrorResponse,
   GetApiV1ServersServeridStacksStacknameEnvironmentParams,
-  ListStacksResponse,
-  StackDetails,
-  StackEnvironmentResponse,
-  StackImagesResponse,
-  StackNetworksResponse,
-  StackPermissionsResponse,
-  StackStatsResponse,
-  StackVolumesResponse
+  ResponseCanCreateStackData,
+  ResponseCreateStackData,
+  ResponseEmpty,
+  ResponseListStacksData,
+  ResponseStackDetails,
+  ResponseStackEnvironmentData,
+  ResponseStackImagesData,
+  ResponseStackNetworksData,
+  ResponseStackPermissionsData,
+  ResponseStackStats,
+  ResponseStackVolumesData
 } from '../models';
 
-import { apiClient } from '../../../lib/api';
+import { apiClient } from '../../client';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -59,9 +59,9 @@ export const getGetApiV1ServersServeridStacksUrl = (serverid: number,) => {
   return `/api/v1/servers/${serverid}/stacks`
 }
 
-export const getApiV1ServersServeridStacks = async (serverid: number, options?: RequestInit): Promise<ListStacksResponse> => {
+export const getApiV1ServersServeridStacks = async (serverid: number, options?: RequestInit): Promise<ResponseListStacksData> => {
 
-  return apiClient<ListStacksResponse>(getGetApiV1ServersServeridStacksUrl(serverid),
+  return apiClient<ResponseListStacksData>(getGetApiV1ServersServeridStacksUrl(serverid),
   {
     ...options,
     method: 'GET'
@@ -81,7 +81,7 @@ export const getGetApiV1ServersServeridStacksQueryKey = (serverid: number,) => {
     }
 
 
-export const getGetApiV1ServersServeridStacksQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ServersServeridStacksQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ResponseEmpty | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -100,10 +100,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>>
-export type GetApiV1ServersServeridStacksQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ResponseEmpty | void>(
  serverid: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>,
@@ -113,7 +113,7 @@ export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<type
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>,
@@ -123,7 +123,7 @@ export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<type
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -131,7 +131,7 @@ export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<type
  * @summary List server stacks
  */
 
-export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacks>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -159,9 +159,9 @@ export const getPostApiV1ServersServeridStacksUrl = (serverid: number,) => {
 }
 
 export const postApiV1ServersServeridStacks = async (serverid: number,
-    createStackRequest: CreateStackRequest, options?: RequestInit): Promise<CreateStackResponse> => {
+    createStackRequest: CreateStackRequest, options?: RequestInit): Promise<ResponseCreateStackData> => {
 
-  return apiClient<CreateStackResponse>(getPostApiV1ServersServeridStacksUrl(serverid),
+  return apiClient<ResponseCreateStackData>(getPostApiV1ServersServeridStacksUrl(serverid),
   {
     ...options,
     method: 'POST',
@@ -174,7 +174,7 @@ export const postApiV1ServersServeridStacks = async (serverid: number,
 
 
 
-export const getPostApiV1ServersServeridStacksMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1ServersServeridStacksMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacks>>, TError,{serverid: number;data: CreateStackRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacks>>, TError,{serverid: number;data: CreateStackRequest}, TContext> => {
 
@@ -203,12 +203,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1ServersServeridStacksMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1ServersServeridStacks>>>
     export type PostApiV1ServersServeridStacksMutationBody = CreateStackRequest
-    export type PostApiV1ServersServeridStacksMutationError = ErrorResponse | void
+    export type PostApiV1ServersServeridStacksMutationError = ResponseEmpty | void
 
     /**
  * @summary Create a new stack
  */
-export const usePostApiV1ServersServeridStacks = <TError = ErrorResponse | void,
+export const usePostApiV1ServersServeridStacks = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacks>>, TError,{serverid: number;data: CreateStackRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1ServersServeridStacks>>,
@@ -230,9 +230,9 @@ export const getGetApiV1ServersServeridStacksCanCreateUrl = (serverid: number,) 
   return `/api/v1/servers/${serverid}/stacks/can-create`
 }
 
-export const getApiV1ServersServeridStacksCanCreate = async (serverid: number, options?: RequestInit): Promise<CanCreateStackResponse> => {
+export const getApiV1ServersServeridStacksCanCreate = async (serverid: number, options?: RequestInit): Promise<ResponseCanCreateStackData> => {
 
-  return apiClient<CanCreateStackResponse>(getGetApiV1ServersServeridStacksCanCreateUrl(serverid),
+  return apiClient<ResponseCanCreateStackData>(getGetApiV1ServersServeridStacksCanCreateUrl(serverid),
   {
     ...options,
     method: 'GET'
@@ -252,7 +252,7 @@ export const getGetApiV1ServersServeridStacksCanCreateQueryKey = (serverid: numb
     }
 
 
-export const getGetApiV1ServersServeridStacksCanCreateQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ServersServeridStacksCanCreateQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ResponseEmpty | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -271,10 +271,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksCanCreateQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>>
-export type GetApiV1ServersServeridStacksCanCreateQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksCanCreateQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ResponseEmpty | void>(
  serverid: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>,
@@ -284,7 +284,7 @@ export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<Return
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>,
@@ -294,7 +294,7 @@ export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<Return
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -302,7 +302,7 @@ export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<Return
  * @summary Check if user can create stacks
  */
 
-export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksCanCreate<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksCanCreate>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -331,9 +331,9 @@ export const getGetApiV1ServersServeridStacksStacknameUrl = (serverid: number,
 }
 
 export const getApiV1ServersServeridStacksStackname = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<StackDetails> => {
+    stackname: string, options?: RequestInit): Promise<ResponseStackDetails> => {
 
-  return apiClient<StackDetails>(getGetApiV1ServersServeridStacksStacknameUrl(serverid,stackname),
+  return apiClient<ResponseStackDetails>(getGetApiV1ServersServeridStacksStacknameUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -354,7 +354,7 @@ export const getGetApiV1ServersServeridStacksStacknameQueryKey = (serverid: numb
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ErrorResponse | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ResponseEmpty | void>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -374,10 +374,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>>
-export type GetApiV1ServersServeridStacksStacknameQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksStacknameQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -388,7 +388,7 @@ export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<Return
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -399,7 +399,7 @@ export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<Return
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -408,7 +408,7 @@ export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<Return
  * @summary Get stack details
  */
 
-export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStackname<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStackname>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -447,9 +447,9 @@ export const getGetApiV1ServersServeridStacksStacknameEnvironmentUrl = (serverid
 
 export const getApiV1ServersServeridStacksStacknameEnvironment = async (serverid: number,
     stackname: string,
-    params?: GetApiV1ServersServeridStacksStacknameEnvironmentParams, options?: RequestInit): Promise<StackEnvironmentResponse> => {
+    params?: GetApiV1ServersServeridStacksStacknameEnvironmentParams, options?: RequestInit): Promise<ResponseStackEnvironmentData> => {
 
-  return apiClient<StackEnvironmentResponse>(getGetApiV1ServersServeridStacksStacknameEnvironmentUrl(serverid,stackname,params),
+  return apiClient<ResponseStackEnvironmentData>(getGetApiV1ServersServeridStacksStacknameEnvironmentUrl(serverid,stackname,params),
   {
     ...options,
     method: 'GET'
@@ -471,7 +471,7 @@ export const getGetApiV1ServersServeridStacksStacknameEnvironmentQueryKey = (ser
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameEnvironmentQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ErrorResponse | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameEnvironmentQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ResponseEmpty | void>(serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameEnvironmentParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
@@ -492,10 +492,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameEnvironmentQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>>
-export type GetApiV1ServersServeridStacksStacknameEnvironmentQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksStacknameEnvironmentQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string,
     params: undefined |  GetApiV1ServersServeridStacksStacknameEnvironmentParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError, TData>> & Pick<
@@ -507,7 +507,7 @@ export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awa
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameEnvironmentParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError, TData>> & Pick<
@@ -519,7 +519,7 @@ export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awa
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameEnvironmentParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -529,7 +529,7 @@ export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awa
  * @summary Get stack environment variables
  */
 
-export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameEnvironment<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameEnvironmentParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameEnvironment>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -560,9 +560,9 @@ export const getGetApiV1ServersServeridStacksStacknameImagesUrl = (serverid: num
 }
 
 export const getApiV1ServersServeridStacksStacknameImages = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<StackImagesResponse> => {
+    stackname: string, options?: RequestInit): Promise<ResponseStackImagesData> => {
 
-  return apiClient<StackImagesResponse>(getGetApiV1ServersServeridStacksStacknameImagesUrl(serverid,stackname),
+  return apiClient<ResponseStackImagesData>(getGetApiV1ServersServeridStacksStacknameImagesUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -583,7 +583,7 @@ export const getGetApiV1ServersServeridStacksStacknameImagesQueryKey = (serverid
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameImagesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ErrorResponse | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameImagesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ResponseEmpty | void>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -603,10 +603,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameImagesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>>
-export type GetApiV1ServersServeridStacksStacknameImagesQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksStacknameImagesQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -617,7 +617,7 @@ export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -628,7 +628,7 @@ export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -637,7 +637,7 @@ export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<
  * @summary Get container image details
  */
 
-export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameImages<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameImages>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -667,9 +667,9 @@ export const getGetApiV1ServersServeridStacksStacknameNetworksUrl = (serverid: n
 }
 
 export const getApiV1ServersServeridStacksStacknameNetworks = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<StackNetworksResponse> => {
+    stackname: string, options?: RequestInit): Promise<ResponseStackNetworksData> => {
 
-  return apiClient<StackNetworksResponse>(getGetApiV1ServersServeridStacksStacknameNetworksUrl(serverid,stackname),
+  return apiClient<ResponseStackNetworksData>(getGetApiV1ServersServeridStacksStacknameNetworksUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -690,7 +690,7 @@ export const getGetApiV1ServersServeridStacksStacknameNetworksQueryKey = (server
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameNetworksQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ErrorResponse | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameNetworksQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ResponseEmpty | void>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -710,10 +710,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameNetworksQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>>
-export type GetApiV1ServersServeridStacksStacknameNetworksQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksStacknameNetworksQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -724,7 +724,7 @@ export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -735,7 +735,7 @@ export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -744,7 +744,7 @@ export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaite
  * @summary Get stack networks
  */
 
-export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameNetworks<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameNetworks>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -774,9 +774,9 @@ export const getGetApiV1ServersServeridStacksStacknamePermissionsUrl = (serverid
 }
 
 export const getApiV1ServersServeridStacksStacknamePermissions = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<StackPermissionsResponse> => {
+    stackname: string, options?: RequestInit): Promise<ResponseStackPermissionsData> => {
 
-  return apiClient<StackPermissionsResponse>(getGetApiV1ServersServeridStacksStacknamePermissionsUrl(serverid,stackname),
+  return apiClient<ResponseStackPermissionsData>(getGetApiV1ServersServeridStacksStacknamePermissionsUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -797,7 +797,7 @@ export const getGetApiV1ServersServeridStacksStacknamePermissionsQueryKey = (ser
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknamePermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ErrorResponse | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknamePermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ResponseEmpty | void>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -817,10 +817,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknamePermissionsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>>
-export type GetApiV1ServersServeridStacksStacknamePermissionsQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksStacknamePermissionsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -831,7 +831,7 @@ export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awa
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -842,7 +842,7 @@ export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awa
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -851,7 +851,7 @@ export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awa
  * @summary Check stack permissions
  */
 
-export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknamePermissions<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknamePermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -881,9 +881,9 @@ export const getGetApiV1ServersServeridStacksStacknameStatsUrl = (serverid: numb
 }
 
 export const getApiV1ServersServeridStacksStacknameStats = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<StackStatsResponse> => {
+    stackname: string, options?: RequestInit): Promise<ResponseStackStats> => {
 
-  return apiClient<StackStatsResponse>(getGetApiV1ServersServeridStacksStacknameStatsUrl(serverid,stackname),
+  return apiClient<ResponseStackStats>(getGetApiV1ServersServeridStacksStacknameStatsUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -904,7 +904,7 @@ export const getGetApiV1ServersServeridStacksStacknameStatsQueryKey = (serverid:
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameStatsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ErrorResponse | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameStatsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ResponseEmpty | void>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -924,10 +924,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameStatsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>>
-export type GetApiV1ServersServeridStacksStacknameStatsQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksStacknameStatsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -938,7 +938,7 @@ export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<R
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -949,7 +949,7 @@ export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<R
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -958,7 +958,7 @@ export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<R
  * @summary Get stack statistics
  */
 
-export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameStats<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -988,9 +988,9 @@ export const getGetApiV1ServersServeridStacksStacknameVolumesUrl = (serverid: nu
 }
 
 export const getApiV1ServersServeridStacksStacknameVolumes = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<StackVolumesResponse> => {
+    stackname: string, options?: RequestInit): Promise<ResponseStackVolumesData> => {
 
-  return apiClient<StackVolumesResponse>(getGetApiV1ServersServeridStacksStacknameVolumesUrl(serverid,stackname),
+  return apiClient<ResponseStackVolumesData>(getGetApiV1ServersServeridStacksStacknameVolumesUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -1011,7 +1011,7 @@ export const getGetApiV1ServersServeridStacksStacknameVolumesQueryKey = (serveri
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameVolumesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ErrorResponse | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameVolumesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ResponseEmpty | void>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -1031,10 +1031,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameVolumesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>>
-export type GetApiV1ServersServeridStacksStacknameVolumesQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridStacksStacknameVolumesQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -1045,7 +1045,7 @@ export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -1056,7 +1056,7 @@ export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -1065,7 +1065,7 @@ export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited
  * @summary Get stack volumes
  */
 
-export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridStacksStacknameVolumes<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError = ResponseEmpty | void>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVolumes>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient

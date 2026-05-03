@@ -25,48 +25,43 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  AdminCreateServerResponse,
-  AdminDeleteServerResponse,
-  AdminListServersResponse,
-  AdminTestConnectionResponse,
-  AdminUpdateServerResponse,
   AssignRoleRequest,
-  AssignRoleResponse,
   CreateRoleRequest,
-  CreateRoleResponse,
   CreateStackPermissionRequest,
-  CreateStackPermissionResponse,
   CreateUserRequest,
-  CreateUserResponse,
-  DeleteRoleResponse,
-  DeleteStackPermissionResponse,
-  ErrorResponse,
   ExportRequest,
   GetApiV1AdminOperationLogsParams,
   GetApiV1AdminPermissionsParams,
   GetApiV1AdminSecurityAuditLogsParams,
-  GetLogAPIResponse,
-  GetStatsAPIResponse,
-  GetUserRolesResponse,
-  ImportResponse,
-  ListLogsAPIResponse,
-  ListPermissionsResponse,
-  ListRoleStackPermissionsResponse,
-  ListRolesResponse,
-  ListUsersResponse,
-  OperationLogDetailResponse,
-  OperationLogStatsResponse,
-  PaginatedOperationLogsResponse,
   PostApiV1AdminMigrationImportBody,
+  ResponseAdminCreateServerData,
+  ResponseAdminListServersData,
+  ResponseAdminUpdateServerData,
+  ResponseEmpty,
+  ResponseGetServerData,
+  ResponseGetUserRolesData,
+  ResponseImportData,
+  ResponseListPermissionsData,
+  ResponseListRoleStackPermissionsData,
+  ResponseListRolesData,
+  ResponseListUsersData,
+  ResponseMessageData,
+  ResponseMessageData2,
+  ResponseOperationLogDetailData,
+  ResponseOperationLogInfo,
+  ResponseOperationLogStatsData,
+  ResponseRoleWithPermissions,
+  ResponseSecurityAuditLogInfo,
+  ResponseSecurityAuditLogInfo2,
+  ResponseStatsResponseData,
+  ResponseUserInfo,
   RevokeRoleRequest,
-  RevokeRoleResponse,
   ServerCreateRequest,
   ServerUpdateRequest,
-  UpdateRoleRequest,
-  UpdateRoleResponse
+  UpdateRoleRequest
 } from '../models';
 
-import { apiClient } from '../../../lib/api';
+import { apiClient } from '../../client';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -100,7 +95,7 @@ export const postApiV1AdminMigrationExport = async (exportRequest: ExportRequest
 
 
 
-export const getPostApiV1AdminMigrationExportMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminMigrationExportMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminMigrationExport>>, TError,{data: ExportRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminMigrationExport>>, TError,{data: ExportRequest}, TContext> => {
 
@@ -129,12 +124,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminMigrationExportMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminMigrationExport>>>
     export type PostApiV1AdminMigrationExportMutationBody = ExportRequest
-    export type PostApiV1AdminMigrationExportMutationError = ErrorResponse | void
+    export type PostApiV1AdminMigrationExportMutationError = ResponseEmpty | void
 
     /**
  * @summary Export data
  */
-export const usePostApiV1AdminMigrationExport = <TError = ErrorResponse | void,
+export const usePostApiV1AdminMigrationExport = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminMigrationExport>>, TError,{data: ExportRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminMigrationExport>>,
@@ -156,12 +151,12 @@ export const getPostApiV1AdminMigrationImportUrl = () => {
   return `/api/v1/admin/migration/import`
 }
 
-export const postApiV1AdminMigrationImport = async (postApiV1AdminMigrationImportBody: PostApiV1AdminMigrationImportBody, options?: RequestInit): Promise<ImportResponse> => {
+export const postApiV1AdminMigrationImport = async (postApiV1AdminMigrationImportBody: PostApiV1AdminMigrationImportBody, options?: RequestInit): Promise<ResponseImportData> => {
     const formData = new FormData();
 formData.append(`backup_file`, postApiV1AdminMigrationImportBody.backup_file);
 formData.append(`password`, postApiV1AdminMigrationImportBody.password);
 
-  return apiClient<ImportResponse>(getPostApiV1AdminMigrationImportUrl(),
+  return apiClient<ResponseImportData>(getPostApiV1AdminMigrationImportUrl(),
   {
     ...options,
     method: 'POST'
@@ -174,7 +169,7 @@ formData.append(`password`, postApiV1AdminMigrationImportBody.password);
 
 
 
-export const getPostApiV1AdminMigrationImportMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminMigrationImportMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminMigrationImport>>, TError,{data: PostApiV1AdminMigrationImportBody}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminMigrationImport>>, TError,{data: PostApiV1AdminMigrationImportBody}, TContext> => {
 
@@ -203,12 +198,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminMigrationImportMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminMigrationImport>>>
     export type PostApiV1AdminMigrationImportMutationBody = PostApiV1AdminMigrationImportBody
-    export type PostApiV1AdminMigrationImportMutationError = ErrorResponse | void
+    export type PostApiV1AdminMigrationImportMutationError = ResponseEmpty | void
 
     /**
  * @summary Import data
  */
-export const usePostApiV1AdminMigrationImport = <TError = ErrorResponse | void,
+export const usePostApiV1AdminMigrationImport = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminMigrationImport>>, TError,{data: PostApiV1AdminMigrationImportBody}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminMigrationImport>>,
@@ -237,9 +232,9 @@ export const getGetApiV1AdminOperationLogsUrl = (params?: GetApiV1AdminOperation
   return stringifiedParams.length > 0 ? `/api/v1/admin/operation-logs?${stringifiedParams}` : `/api/v1/admin/operation-logs`
 }
 
-export const getApiV1AdminOperationLogs = async (params?: GetApiV1AdminOperationLogsParams, options?: RequestInit): Promise<PaginatedOperationLogsResponse> => {
+export const getApiV1AdminOperationLogs = async (params?: GetApiV1AdminOperationLogsParams, options?: RequestInit): Promise<ResponseOperationLogInfo> => {
 
-  return apiClient<PaginatedOperationLogsResponse>(getGetApiV1AdminOperationLogsUrl(params),
+  return apiClient<ResponseOperationLogInfo>(getGetApiV1AdminOperationLogsUrl(params),
   {
     ...options,
     method: 'GET'
@@ -259,7 +254,7 @@ export const getGetApiV1AdminOperationLogsQueryKey = (params?: GetApiV1AdminOper
     }
 
 
-export const getGetApiV1AdminOperationLogsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ErrorResponse | void>(params?: GetApiV1AdminOperationLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminOperationLogsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ResponseEmpty | void>(params?: GetApiV1AdminOperationLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -278,10 +273,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminOperationLogsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>>
-export type GetApiV1AdminOperationLogsQueryError = ErrorResponse | void
+export type GetApiV1AdminOperationLogsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ResponseEmpty | void>(
  params: undefined |  GetApiV1AdminOperationLogsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>,
@@ -291,7 +286,7 @@ export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof 
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminOperationLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>,
@@ -301,7 +296,7 @@ export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof 
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminOperationLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -309,7 +304,7 @@ export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof 
  * @summary List all operation logs
  */
 
-export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogs<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminOperationLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -336,9 +331,9 @@ export const getGetApiV1AdminOperationLogsStatsUrl = () => {
   return `/api/v1/admin/operation-logs/stats`
 }
 
-export const getApiV1AdminOperationLogsStats = async ( options?: RequestInit): Promise<OperationLogStatsResponse> => {
+export const getApiV1AdminOperationLogsStats = async ( options?: RequestInit): Promise<ResponseOperationLogStatsData> => {
 
-  return apiClient<OperationLogStatsResponse>(getGetApiV1AdminOperationLogsStatsUrl(),
+  return apiClient<ResponseOperationLogStatsData>(getGetApiV1AdminOperationLogsStatsUrl(),
   {
     ...options,
     method: 'GET'
@@ -358,7 +353,7 @@ export const getGetApiV1AdminOperationLogsStatsQueryKey = () => {
     }
 
 
-export const getGetApiV1AdminOperationLogsStatsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminOperationLogsStatsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -377,10 +372,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminOperationLogsStatsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>>
-export type GetApiV1AdminOperationLogsStatsQueryError = ErrorResponse | void
+export type GetApiV1AdminOperationLogsStatsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>,
@@ -390,7 +385,7 @@ export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<ty
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>,
@@ -400,7 +395,7 @@ export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<ty
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -408,7 +403,7 @@ export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<ty
  * @summary Get operation logs statistics
  */
 
-export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -435,9 +430,9 @@ export const getGetApiV1AdminOperationLogsIdUrl = (id: number,) => {
   return `/api/v1/admin/operation-logs/${id}`
 }
 
-export const getApiV1AdminOperationLogsId = async (id: number, options?: RequestInit): Promise<OperationLogDetailResponse> => {
+export const getApiV1AdminOperationLogsId = async (id: number, options?: RequestInit): Promise<ResponseOperationLogDetailData> => {
 
-  return apiClient<OperationLogDetailResponse>(getGetApiV1AdminOperationLogsIdUrl(id),
+  return apiClient<ResponseOperationLogDetailData>(getGetApiV1AdminOperationLogsIdUrl(id),
   {
     ...options,
     method: 'GET'
@@ -457,7 +452,7 @@ export const getGetApiV1AdminOperationLogsIdQueryKey = (id: number,) => {
     }
 
 
-export const getGetApiV1AdminOperationLogsIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ErrorResponse | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminOperationLogsIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ResponseEmpty | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -476,10 +471,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminOperationLogsIdQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>>
-export type GetApiV1AdminOperationLogsIdQueryError = ErrorResponse | void
+export type GetApiV1AdminOperationLogsIdQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ResponseEmpty | void>(
  id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>,
@@ -489,7 +484,7 @@ export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeo
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>,
@@ -499,7 +494,7 @@ export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeo
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -507,7 +502,7 @@ export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeo
  * @summary Get operation log details
  */
 
-export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminOperationLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminOperationLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -541,9 +536,9 @@ export const getGetApiV1AdminPermissionsUrl = (params?: GetApiV1AdminPermissions
   return stringifiedParams.length > 0 ? `/api/v1/admin/permissions?${stringifiedParams}` : `/api/v1/admin/permissions`
 }
 
-export const getApiV1AdminPermissions = async (params?: GetApiV1AdminPermissionsParams, options?: RequestInit): Promise<ListPermissionsResponse> => {
+export const getApiV1AdminPermissions = async (params?: GetApiV1AdminPermissionsParams, options?: RequestInit): Promise<ResponseListPermissionsData> => {
 
-  return apiClient<ListPermissionsResponse>(getGetApiV1AdminPermissionsUrl(params),
+  return apiClient<ResponseListPermissionsData>(getGetApiV1AdminPermissionsUrl(params),
   {
     ...options,
     method: 'GET'
@@ -563,7 +558,7 @@ export const getGetApiV1AdminPermissionsQueryKey = (params?: GetApiV1AdminPermis
     }
 
 
-export const getGetApiV1AdminPermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ErrorResponse | void>(params?: GetApiV1AdminPermissionsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminPermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ResponseEmpty | void>(params?: GetApiV1AdminPermissionsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -582,10 +577,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminPermissionsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminPermissions>>>
-export type GetApiV1AdminPermissionsQueryError = ErrorResponse | void
+export type GetApiV1AdminPermissionsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ResponseEmpty | void>(
  params: undefined |  GetApiV1AdminPermissionsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminPermissions>>,
@@ -595,7 +590,7 @@ export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof ge
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminPermissionsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminPermissions>>,
@@ -605,7 +600,7 @@ export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof ge
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminPermissionsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -613,7 +608,7 @@ export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof ge
  * @summary List all permissions
  */
 
-export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminPermissionsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -640,9 +635,9 @@ export const getGetApiV1AdminRolesUrl = () => {
   return `/api/v1/admin/roles`
 }
 
-export const getApiV1AdminRoles = async ( options?: RequestInit): Promise<ListRolesResponse> => {
+export const getApiV1AdminRoles = async ( options?: RequestInit): Promise<ResponseListRolesData> => {
 
-  return apiClient<ListRolesResponse>(getGetApiV1AdminRolesUrl(),
+  return apiClient<ResponseListRolesData>(getGetApiV1AdminRolesUrl(),
   {
     ...options,
     method: 'GET'
@@ -662,7 +657,7 @@ export const getGetApiV1AdminRolesQueryKey = () => {
     }
 
 
-export const getGetApiV1AdminRolesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminRolesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -681,10 +676,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminRolesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminRoles>>>
-export type GetApiV1AdminRolesQueryError = ErrorResponse | void
+export type GetApiV1AdminRolesQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminRoles>>,
@@ -694,7 +689,7 @@ export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminRoles>>,
@@ -704,7 +699,7 @@ export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -712,7 +707,7 @@ export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1
  * @summary List all roles
  */
 
-export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRoles<TData = Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -739,9 +734,9 @@ export const getPostApiV1AdminRolesUrl = () => {
   return `/api/v1/admin/roles`
 }
 
-export const postApiV1AdminRoles = async (createRoleRequest: CreateRoleRequest, options?: RequestInit): Promise<CreateRoleResponse> => {
+export const postApiV1AdminRoles = async (createRoleRequest: CreateRoleRequest, options?: RequestInit): Promise<ResponseRoleWithPermissions> => {
 
-  return apiClient<CreateRoleResponse>(getPostApiV1AdminRolesUrl(),
+  return apiClient<ResponseRoleWithPermissions>(getPostApiV1AdminRolesUrl(),
   {
     ...options,
     method: 'POST',
@@ -754,7 +749,7 @@ export const postApiV1AdminRoles = async (createRoleRequest: CreateRoleRequest, 
 
 
 
-export const getPostApiV1AdminRolesMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminRolesMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminRoles>>, TError,{data: CreateRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminRoles>>, TError,{data: CreateRoleRequest}, TContext> => {
 
@@ -783,12 +778,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminRolesMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminRoles>>>
     export type PostApiV1AdminRolesMutationBody = CreateRoleRequest
-    export type PostApiV1AdminRolesMutationError = ErrorResponse | void
+    export type PostApiV1AdminRolesMutationError = ResponseEmpty | void
 
     /**
  * @summary Create a new role
  */
-export const usePostApiV1AdminRoles = <TError = ErrorResponse | void,
+export const usePostApiV1AdminRoles = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminRoles>>, TError,{data: CreateRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminRoles>>,
@@ -810,9 +805,9 @@ export const getDeleteApiV1AdminRolesIdUrl = (id: number,) => {
   return `/api/v1/admin/roles/${id}`
 }
 
-export const deleteApiV1AdminRolesId = async (id: number, options?: RequestInit): Promise<DeleteRoleResponse> => {
+export const deleteApiV1AdminRolesId = async (id: number, options?: RequestInit): Promise<ResponseMessageData> => {
 
-  return apiClient<DeleteRoleResponse>(getDeleteApiV1AdminRolesIdUrl(id),
+  return apiClient<ResponseMessageData>(getDeleteApiV1AdminRolesIdUrl(id),
   {
     ...options,
     method: 'DELETE'
@@ -824,7 +819,7 @@ export const deleteApiV1AdminRolesId = async (id: number, options?: RequestInit)
 
 
 
-export const getDeleteApiV1AdminRolesIdMutationOptions = <TError = ErrorResponse | void,
+export const getDeleteApiV1AdminRolesIdMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminRolesId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminRolesId>>, TError,{id: number}, TContext> => {
 
@@ -853,12 +848,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type DeleteApiV1AdminRolesIdMutationResult = NonNullable<Awaited<ReturnType<typeof deleteApiV1AdminRolesId>>>
 
-    export type DeleteApiV1AdminRolesIdMutationError = ErrorResponse | void
+    export type DeleteApiV1AdminRolesIdMutationError = ResponseEmpty | void
 
     /**
  * @summary Delete a role
  */
-export const useDeleteApiV1AdminRolesId = <TError = ErrorResponse | void,
+export const useDeleteApiV1AdminRolesId = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminRolesId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1AdminRolesId>>,
@@ -881,9 +876,9 @@ export const getPutApiV1AdminRolesIdUrl = (id: number,) => {
 }
 
 export const putApiV1AdminRolesId = async (id: number,
-    updateRoleRequest: UpdateRoleRequest, options?: RequestInit): Promise<UpdateRoleResponse> => {
+    updateRoleRequest: UpdateRoleRequest, options?: RequestInit): Promise<ResponseRoleWithPermissions> => {
 
-  return apiClient<UpdateRoleResponse>(getPutApiV1AdminRolesIdUrl(id),
+  return apiClient<ResponseRoleWithPermissions>(getPutApiV1AdminRolesIdUrl(id),
   {
     ...options,
     method: 'PUT',
@@ -896,7 +891,7 @@ export const putApiV1AdminRolesId = async (id: number,
 
 
 
-export const getPutApiV1AdminRolesIdMutationOptions = <TError = ErrorResponse | void,
+export const getPutApiV1AdminRolesIdMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putApiV1AdminRolesId>>, TError,{id: number;data: UpdateRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof putApiV1AdminRolesId>>, TError,{id: number;data: UpdateRoleRequest}, TContext> => {
 
@@ -925,12 +920,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PutApiV1AdminRolesIdMutationResult = NonNullable<Awaited<ReturnType<typeof putApiV1AdminRolesId>>>
     export type PutApiV1AdminRolesIdMutationBody = UpdateRoleRequest
-    export type PutApiV1AdminRolesIdMutationError = ErrorResponse | void
+    export type PutApiV1AdminRolesIdMutationError = ResponseEmpty | void
 
     /**
  * @summary Update a role
  */
-export const usePutApiV1AdminRolesId = <TError = ErrorResponse | void,
+export const usePutApiV1AdminRolesId = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putApiV1AdminRolesId>>, TError,{id: number;data: UpdateRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putApiV1AdminRolesId>>,
@@ -952,9 +947,9 @@ export const getGetApiV1AdminRolesRoleIdStackPermissionsUrl = (roleId: number,) 
   return `/api/v1/admin/roles/${roleId}/stack-permissions`
 }
 
-export const getApiV1AdminRolesRoleIdStackPermissions = async (roleId: number, options?: RequestInit): Promise<ListRoleStackPermissionsResponse> => {
+export const getApiV1AdminRolesRoleIdStackPermissions = async (roleId: number, options?: RequestInit): Promise<ResponseListRoleStackPermissionsData> => {
 
-  return apiClient<ListRoleStackPermissionsResponse>(getGetApiV1AdminRolesRoleIdStackPermissionsUrl(roleId),
+  return apiClient<ResponseListRoleStackPermissionsData>(getGetApiV1AdminRolesRoleIdStackPermissionsUrl(roleId),
   {
     ...options,
     method: 'GET'
@@ -974,7 +969,7 @@ export const getGetApiV1AdminRolesRoleIdStackPermissionsQueryKey = (roleId: numb
     }
 
 
-export const getGetApiV1AdminRolesRoleIdStackPermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ErrorResponse | void>(roleId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminRolesRoleIdStackPermissionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ResponseEmpty | void>(roleId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -993,10 +988,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminRolesRoleIdStackPermissionsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>>
-export type GetApiV1AdminRolesRoleIdStackPermissionsQueryError = ErrorResponse | void
+export type GetApiV1AdminRolesRoleIdStackPermissionsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ResponseEmpty | void>(
  roleId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>,
@@ -1006,7 +1001,7 @@ export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<Retu
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ResponseEmpty | void>(
  roleId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>,
@@ -1016,7 +1011,7 @@ export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<Retu
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ResponseEmpty | void>(
  roleId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -1024,7 +1019,7 @@ export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<Retu
  * @summary List role stack permissions
  */
 
-export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminRolesRoleIdStackPermissions<TData = Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError = ResponseEmpty | void>(
  roleId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminRolesRoleIdStackPermissions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -1052,9 +1047,9 @@ export const getPostApiV1AdminRolesRoleIdStackPermissionsUrl = (roleId: number,)
 }
 
 export const postApiV1AdminRolesRoleIdStackPermissions = async (roleId: number,
-    createStackPermissionRequest: CreateStackPermissionRequest, options?: RequestInit): Promise<CreateStackPermissionResponse> => {
+    createStackPermissionRequest: CreateStackPermissionRequest, options?: RequestInit): Promise<ResponseMessageData> => {
 
-  return apiClient<CreateStackPermissionResponse>(getPostApiV1AdminRolesRoleIdStackPermissionsUrl(roleId),
+  return apiClient<ResponseMessageData>(getPostApiV1AdminRolesRoleIdStackPermissionsUrl(roleId),
   {
     ...options,
     method: 'POST',
@@ -1067,7 +1062,7 @@ export const postApiV1AdminRolesRoleIdStackPermissions = async (roleId: number,
 
 
 
-export const getPostApiV1AdminRolesRoleIdStackPermissionsMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminRolesRoleIdStackPermissionsMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminRolesRoleIdStackPermissions>>, TError,{roleId: number;data: CreateStackPermissionRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminRolesRoleIdStackPermissions>>, TError,{roleId: number;data: CreateStackPermissionRequest}, TContext> => {
 
@@ -1096,12 +1091,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminRolesRoleIdStackPermissionsMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminRolesRoleIdStackPermissions>>>
     export type PostApiV1AdminRolesRoleIdStackPermissionsMutationBody = CreateStackPermissionRequest
-    export type PostApiV1AdminRolesRoleIdStackPermissionsMutationError = ErrorResponse | void
+    export type PostApiV1AdminRolesRoleIdStackPermissionsMutationError = ResponseEmpty | void
 
     /**
  * @summary Create a role stack permission
  */
-export const usePostApiV1AdminRolesRoleIdStackPermissions = <TError = ErrorResponse | void,
+export const usePostApiV1AdminRolesRoleIdStackPermissions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminRolesRoleIdStackPermissions>>, TError,{roleId: number;data: CreateStackPermissionRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminRolesRoleIdStackPermissions>>,
@@ -1125,9 +1120,9 @@ export const getDeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdUrl = (ro
 }
 
 export const deleteApiV1AdminRolesRoleIdStackPermissionsPermissionId = async (roleId: number,
-    permissionId: number, options?: RequestInit): Promise<DeleteStackPermissionResponse> => {
+    permissionId: number, options?: RequestInit): Promise<ResponseMessageData> => {
 
-  return apiClient<DeleteStackPermissionResponse>(getDeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdUrl(roleId,permissionId),
+  return apiClient<ResponseMessageData>(getDeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdUrl(roleId,permissionId),
   {
     ...options,
     method: 'DELETE'
@@ -1139,7 +1134,7 @@ export const deleteApiV1AdminRolesRoleIdStackPermissionsPermissionId = async (ro
 
 
 
-export const getDeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdMutationOptions = <TError = ErrorResponse | void,
+export const getDeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminRolesRoleIdStackPermissionsPermissionId>>, TError,{roleId: number;permissionId: number}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminRolesRoleIdStackPermissionsPermissionId>>, TError,{roleId: number;permissionId: number}, TContext> => {
 
@@ -1168,12 +1163,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type DeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdMutationResult = NonNullable<Awaited<ReturnType<typeof deleteApiV1AdminRolesRoleIdStackPermissionsPermissionId>>>
 
-    export type DeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdMutationError = ErrorResponse | void
+    export type DeleteApiV1AdminRolesRoleIdStackPermissionsPermissionIdMutationError = ResponseEmpty | void
 
     /**
  * @summary Delete a role stack permission
  */
-export const useDeleteApiV1AdminRolesRoleIdStackPermissionsPermissionId = <TError = ErrorResponse | void,
+export const useDeleteApiV1AdminRolesRoleIdStackPermissionsPermissionId = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminRolesRoleIdStackPermissionsPermissionId>>, TError,{roleId: number;permissionId: number}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1AdminRolesRoleIdStackPermissionsPermissionId>>,
@@ -1202,9 +1197,9 @@ export const getGetApiV1AdminSecurityAuditLogsUrl = (params?: GetApiV1AdminSecur
   return stringifiedParams.length > 0 ? `/api/v1/admin/security-audit-logs?${stringifiedParams}` : `/api/v1/admin/security-audit-logs`
 }
 
-export const getApiV1AdminSecurityAuditLogs = async (params?: GetApiV1AdminSecurityAuditLogsParams, options?: RequestInit): Promise<ListLogsAPIResponse> => {
+export const getApiV1AdminSecurityAuditLogs = async (params?: GetApiV1AdminSecurityAuditLogsParams, options?: RequestInit): Promise<ResponseSecurityAuditLogInfo> => {
 
-  return apiClient<ListLogsAPIResponse>(getGetApiV1AdminSecurityAuditLogsUrl(params),
+  return apiClient<ResponseSecurityAuditLogInfo>(getGetApiV1AdminSecurityAuditLogsUrl(params),
   {
     ...options,
     method: 'GET'
@@ -1224,7 +1219,7 @@ export const getGetApiV1AdminSecurityAuditLogsQueryKey = (params?: GetApiV1Admin
     }
 
 
-export const getGetApiV1AdminSecurityAuditLogsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ErrorResponse | void>(params?: GetApiV1AdminSecurityAuditLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminSecurityAuditLogsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ResponseEmpty | void>(params?: GetApiV1AdminSecurityAuditLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -1243,10 +1238,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminSecurityAuditLogsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>>
-export type GetApiV1AdminSecurityAuditLogsQueryError = ErrorResponse | void
+export type GetApiV1AdminSecurityAuditLogsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ResponseEmpty | void>(
  params: undefined |  GetApiV1AdminSecurityAuditLogsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>,
@@ -1256,7 +1251,7 @@ export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typ
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminSecurityAuditLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>,
@@ -1266,7 +1261,7 @@ export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typ
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminSecurityAuditLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -1274,7 +1269,7 @@ export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typ
  * @summary List security audit logs
  */
 
-export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogs<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError = ResponseEmpty | void>(
  params?: GetApiV1AdminSecurityAuditLogsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogs>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -1301,9 +1296,9 @@ export const getGetApiV1AdminSecurityAuditLogsStatsUrl = () => {
   return `/api/v1/admin/security-audit-logs/stats`
 }
 
-export const getApiV1AdminSecurityAuditLogsStats = async ( options?: RequestInit): Promise<GetStatsAPIResponse> => {
+export const getApiV1AdminSecurityAuditLogsStats = async ( options?: RequestInit): Promise<ResponseStatsResponseData> => {
 
-  return apiClient<GetStatsAPIResponse>(getGetApiV1AdminSecurityAuditLogsStatsUrl(),
+  return apiClient<ResponseStatsResponseData>(getGetApiV1AdminSecurityAuditLogsStatsUrl(),
   {
     ...options,
     method: 'GET'
@@ -1323,7 +1318,7 @@ export const getGetApiV1AdminSecurityAuditLogsStatsQueryKey = () => {
     }
 
 
-export const getGetApiV1AdminSecurityAuditLogsStatsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminSecurityAuditLogsStatsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -1342,10 +1337,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminSecurityAuditLogsStatsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>>
-export type GetApiV1AdminSecurityAuditLogsStatsQueryError = ErrorResponse | void
+export type GetApiV1AdminSecurityAuditLogsStatsQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>,
@@ -1355,7 +1350,7 @@ export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnTyp
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>,
@@ -1365,7 +1360,7 @@ export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnTyp
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -1373,7 +1368,7 @@ export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnTyp
  * @summary Get security audit statistics
  */
 
-export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsStats<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsStats>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -1400,9 +1395,9 @@ export const getGetApiV1AdminSecurityAuditLogsIdUrl = (id: number,) => {
   return `/api/v1/admin/security-audit-logs/${id}`
 }
 
-export const getApiV1AdminSecurityAuditLogsId = async (id: number, options?: RequestInit): Promise<GetLogAPIResponse> => {
+export const getApiV1AdminSecurityAuditLogsId = async (id: number, options?: RequestInit): Promise<ResponseSecurityAuditLogInfo2> => {
 
-  return apiClient<GetLogAPIResponse>(getGetApiV1AdminSecurityAuditLogsIdUrl(id),
+  return apiClient<ResponseSecurityAuditLogInfo2>(getGetApiV1AdminSecurityAuditLogsIdUrl(id),
   {
     ...options,
     method: 'GET'
@@ -1422,7 +1417,7 @@ export const getGetApiV1AdminSecurityAuditLogsIdQueryKey = (id: number,) => {
     }
 
 
-export const getGetApiV1AdminSecurityAuditLogsIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ErrorResponse | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminSecurityAuditLogsIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ResponseEmpty | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -1441,10 +1436,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminSecurityAuditLogsIdQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>>
-export type GetApiV1AdminSecurityAuditLogsIdQueryError = ErrorResponse | void
+export type GetApiV1AdminSecurityAuditLogsIdQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ResponseEmpty | void>(
  id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>,
@@ -1454,7 +1449,7 @@ export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<t
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>,
@@ -1464,7 +1459,7 @@ export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<t
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -1472,7 +1467,7 @@ export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<t
  * @summary Get security audit log details
  */
 
-export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminSecurityAuditLogsId<TData = Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminSecurityAuditLogsId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -1499,9 +1494,9 @@ export const getGetApiV1AdminServersUrl = () => {
   return `/api/v1/admin/servers`
 }
 
-export const getApiV1AdminServers = async ( options?: RequestInit): Promise<AdminListServersResponse> => {
+export const getApiV1AdminServers = async ( options?: RequestInit): Promise<ResponseAdminListServersData> => {
 
-  return apiClient<AdminListServersResponse>(getGetApiV1AdminServersUrl(),
+  return apiClient<ResponseAdminListServersData>(getGetApiV1AdminServersUrl(),
   {
     ...options,
     method: 'GET'
@@ -1521,7 +1516,7 @@ export const getGetApiV1AdminServersQueryKey = () => {
     }
 
 
-export const getGetApiV1AdminServersQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminServersQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -1540,10 +1535,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminServersQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminServers>>>
-export type GetApiV1AdminServersQueryError = ErrorResponse | void
+export type GetApiV1AdminServersQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServers>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminServers>>,
@@ -1553,7 +1548,7 @@ export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApi
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServers>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminServers>>,
@@ -1563,7 +1558,7 @@ export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApi
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -1571,7 +1566,7 @@ export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApi
  * @summary List all servers
  */
 
-export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminServers<TData = Awaited<ReturnType<typeof getApiV1AdminServers>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -1598,9 +1593,9 @@ export const getPostApiV1AdminServersUrl = () => {
   return `/api/v1/admin/servers`
 }
 
-export const postApiV1AdminServers = async (serverCreateRequest: ServerCreateRequest, options?: RequestInit): Promise<AdminCreateServerResponse> => {
+export const postApiV1AdminServers = async (serverCreateRequest: ServerCreateRequest, options?: RequestInit): Promise<ResponseAdminCreateServerData> => {
 
-  return apiClient<AdminCreateServerResponse>(getPostApiV1AdminServersUrl(),
+  return apiClient<ResponseAdminCreateServerData>(getPostApiV1AdminServersUrl(),
   {
     ...options,
     method: 'POST',
@@ -1613,7 +1608,7 @@ export const postApiV1AdminServers = async (serverCreateRequest: ServerCreateReq
 
 
 
-export const getPostApiV1AdminServersMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminServersMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServers>>, TError,{data: ServerCreateRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServers>>, TError,{data: ServerCreateRequest}, TContext> => {
 
@@ -1642,12 +1637,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminServersMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminServers>>>
     export type PostApiV1AdminServersMutationBody = ServerCreateRequest
-    export type PostApiV1AdminServersMutationError = ErrorResponse | void
+    export type PostApiV1AdminServersMutationError = ResponseEmpty | void
 
     /**
  * @summary Create a new server
  */
-export const usePostApiV1AdminServers = <TError = ErrorResponse | void,
+export const usePostApiV1AdminServers = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServers>>, TError,{data: ServerCreateRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminServers>>,
@@ -1669,9 +1664,9 @@ export const getDeleteApiV1AdminServersIdUrl = (id: number,) => {
   return `/api/v1/admin/servers/${id}`
 }
 
-export const deleteApiV1AdminServersId = async (id: number, options?: RequestInit): Promise<AdminDeleteServerResponse> => {
+export const deleteApiV1AdminServersId = async (id: number, options?: RequestInit): Promise<ResponseMessageData2> => {
 
-  return apiClient<AdminDeleteServerResponse>(getDeleteApiV1AdminServersIdUrl(id),
+  return apiClient<ResponseMessageData2>(getDeleteApiV1AdminServersIdUrl(id),
   {
     ...options,
     method: 'DELETE'
@@ -1683,7 +1678,7 @@ export const deleteApiV1AdminServersId = async (id: number, options?: RequestIni
 
 
 
-export const getDeleteApiV1AdminServersIdMutationOptions = <TError = ErrorResponse | void,
+export const getDeleteApiV1AdminServersIdMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number}, TContext> => {
 
@@ -1712,12 +1707,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type DeleteApiV1AdminServersIdMutationResult = NonNullable<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>>
 
-    export type DeleteApiV1AdminServersIdMutationError = ErrorResponse | void
+    export type DeleteApiV1AdminServersIdMutationError = ResponseEmpty | void
 
     /**
  * @summary Delete a server
  */
-export const useDeleteApiV1AdminServersId = <TError = ErrorResponse | void,
+export const useDeleteApiV1AdminServersId = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1AdminServersId>>,
@@ -1728,6 +1723,105 @@ export const useDeleteApiV1AdminServersId = <TError = ErrorResponse | void,
       return useMutation(getDeleteApiV1AdminServersIdMutationOptions(options), queryClient);
     }
     /**
+ * Returns a single server by ID. Requires admin access.
+ * @summary Get a server
+ */
+export const getGetApiV1AdminServersIdUrl = (id: number,) => {
+
+
+
+
+  return `/api/v1/admin/servers/${id}`
+}
+
+export const getApiV1AdminServersId = async (id: number, options?: RequestInit): Promise<ResponseGetServerData> => {
+
+  return apiClient<ResponseGetServerData>(getGetApiV1AdminServersIdUrl(id),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetApiV1AdminServersIdQueryKey = (id: number,) => {
+    return [
+    `/api/v1/admin/servers/${id}`
+    ] as const;
+    }
+
+
+export const getGetApiV1AdminServersIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError = ResponseEmpty | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetApiV1AdminServersIdQueryKey(id);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1AdminServersId>>> = ({ signal }) => getApiV1AdminServersId(id, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetApiV1AdminServersIdQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminServersId>>>
+export type GetApiV1AdminServersIdQueryError = ResponseEmpty | void
+
+
+export function useGetApiV1AdminServersId<TData = Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError = ResponseEmpty | void>(
+ id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getApiV1AdminServersId>>,
+          TError,
+          Awaited<ReturnType<typeof getApiV1AdminServersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetApiV1AdminServersId<TData = Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError = ResponseEmpty | void>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getApiV1AdminServersId>>,
+          TError,
+          Awaited<ReturnType<typeof getApiV1AdminServersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetApiV1AdminServersId<TData = Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError = ResponseEmpty | void>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a server
+ */
+
+export function useGetApiV1AdminServersId<TData = Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError = ResponseEmpty | void>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetApiV1AdminServersIdQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+/**
  * Update an existing server connection. Requires admin access.
  * @summary Update a server
  */
@@ -1740,9 +1834,9 @@ export const getPutApiV1AdminServersIdUrl = (id: number,) => {
 }
 
 export const putApiV1AdminServersId = async (id: number,
-    serverUpdateRequest: ServerUpdateRequest, options?: RequestInit): Promise<AdminUpdateServerResponse> => {
+    serverUpdateRequest: ServerUpdateRequest, options?: RequestInit): Promise<ResponseAdminUpdateServerData> => {
 
-  return apiClient<AdminUpdateServerResponse>(getPutApiV1AdminServersIdUrl(id),
+  return apiClient<ResponseAdminUpdateServerData>(getPutApiV1AdminServersIdUrl(id),
   {
     ...options,
     method: 'PUT',
@@ -1755,7 +1849,7 @@ export const putApiV1AdminServersId = async (id: number,
 
 
 
-export const getPutApiV1AdminServersIdMutationOptions = <TError = ErrorResponse | void,
+export const getPutApiV1AdminServersIdMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putApiV1AdminServersId>>, TError,{id: number;data: ServerUpdateRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof putApiV1AdminServersId>>, TError,{id: number;data: ServerUpdateRequest}, TContext> => {
 
@@ -1784,12 +1878,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PutApiV1AdminServersIdMutationResult = NonNullable<Awaited<ReturnType<typeof putApiV1AdminServersId>>>
     export type PutApiV1AdminServersIdMutationBody = ServerUpdateRequest
-    export type PutApiV1AdminServersIdMutationError = ErrorResponse | void
+    export type PutApiV1AdminServersIdMutationError = ResponseEmpty | void
 
     /**
  * @summary Update a server
  */
-export const usePutApiV1AdminServersId = <TError = ErrorResponse | void,
+export const usePutApiV1AdminServersId = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putApiV1AdminServersId>>, TError,{id: number;data: ServerUpdateRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putApiV1AdminServersId>>,
@@ -1811,9 +1905,9 @@ export const getPostApiV1AdminServersIdTestUrl = (id: number,) => {
   return `/api/v1/admin/servers/${id}/test`
 }
 
-export const postApiV1AdminServersIdTest = async (id: number, options?: RequestInit): Promise<AdminTestConnectionResponse> => {
+export const postApiV1AdminServersIdTest = async (id: number, options?: RequestInit): Promise<ResponseMessageData2> => {
 
-  return apiClient<AdminTestConnectionResponse>(getPostApiV1AdminServersIdTestUrl(id),
+  return apiClient<ResponseMessageData2>(getPostApiV1AdminServersIdTestUrl(id),
   {
     ...options,
     method: 'POST'
@@ -1825,7 +1919,7 @@ export const postApiV1AdminServersIdTest = async (id: number, options?: RequestI
 
 
 
-export const getPostApiV1AdminServersIdTestMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminServersIdTestMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdTest>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdTest>>, TError,{id: number}, TContext> => {
 
@@ -1854,12 +1948,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminServersIdTestMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminServersIdTest>>>
 
-    export type PostApiV1AdminServersIdTestMutationError = ErrorResponse | void
+    export type PostApiV1AdminServersIdTestMutationError = ResponseEmpty | void
 
     /**
  * @summary Test server connection
  */
-export const usePostApiV1AdminServersIdTest = <TError = ErrorResponse | void,
+export const usePostApiV1AdminServersIdTest = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdTest>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminServersIdTest>>,
@@ -1881,9 +1975,9 @@ export const getGetApiV1AdminUsersUrl = () => {
   return `/api/v1/admin/users`
 }
 
-export const getApiV1AdminUsers = async ( options?: RequestInit): Promise<ListUsersResponse> => {
+export const getApiV1AdminUsers = async ( options?: RequestInit): Promise<ResponseListUsersData> => {
 
-  return apiClient<ListUsersResponse>(getGetApiV1AdminUsersUrl(),
+  return apiClient<ResponseListUsersData>(getGetApiV1AdminUsersUrl(),
   {
     ...options,
     method: 'GET'
@@ -1903,7 +1997,7 @@ export const getGetApiV1AdminUsersQueryKey = () => {
     }
 
 
-export const getGetApiV1AdminUsersQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminUsersQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -1922,10 +2016,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminUsersQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminUsers>>>
-export type GetApiV1AdminUsersQueryError = ErrorResponse | void
+export type GetApiV1AdminUsersQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminUsers>>,
@@ -1935,7 +2029,7 @@ export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminUsers>>,
@@ -1945,7 +2039,7 @@ export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -1953,7 +2047,7 @@ export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1
  * @summary List all users
  */
 
-export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsers<TData = Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsers>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -1980,9 +2074,9 @@ export const getPostApiV1AdminUsersUrl = () => {
   return `/api/v1/admin/users`
 }
 
-export const postApiV1AdminUsers = async (createUserRequest: CreateUserRequest, options?: RequestInit): Promise<CreateUserResponse> => {
+export const postApiV1AdminUsers = async (createUserRequest: CreateUserRequest, options?: RequestInit): Promise<ResponseUserInfo> => {
 
-  return apiClient<CreateUserResponse>(getPostApiV1AdminUsersUrl(),
+  return apiClient<ResponseUserInfo>(getPostApiV1AdminUsersUrl(),
   {
     ...options,
     method: 'POST',
@@ -1995,7 +2089,7 @@ export const postApiV1AdminUsers = async (createUserRequest: CreateUserRequest, 
 
 
 
-export const getPostApiV1AdminUsersMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminUsersMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsers>>, TError,{data: CreateUserRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsers>>, TError,{data: CreateUserRequest}, TContext> => {
 
@@ -2024,12 +2118,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminUsersMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminUsers>>>
     export type PostApiV1AdminUsersMutationBody = CreateUserRequest
-    export type PostApiV1AdminUsersMutationError = ErrorResponse | void
+    export type PostApiV1AdminUsersMutationError = ResponseEmpty | void
 
     /**
  * @summary Create a new user
  */
-export const usePostApiV1AdminUsers = <TError = ErrorResponse | void,
+export const usePostApiV1AdminUsers = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsers>>, TError,{data: CreateUserRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminUsers>>,
@@ -2051,9 +2145,9 @@ export const getPostApiV1AdminUsersAssignRoleUrl = () => {
   return `/api/v1/admin/users/assign-role`
 }
 
-export const postApiV1AdminUsersAssignRole = async (assignRoleRequest: AssignRoleRequest, options?: RequestInit): Promise<AssignRoleResponse> => {
+export const postApiV1AdminUsersAssignRole = async (assignRoleRequest: AssignRoleRequest, options?: RequestInit): Promise<ResponseMessageData> => {
 
-  return apiClient<AssignRoleResponse>(getPostApiV1AdminUsersAssignRoleUrl(),
+  return apiClient<ResponseMessageData>(getPostApiV1AdminUsersAssignRoleUrl(),
   {
     ...options,
     method: 'POST',
@@ -2066,7 +2160,7 @@ export const postApiV1AdminUsersAssignRole = async (assignRoleRequest: AssignRol
 
 
 
-export const getPostApiV1AdminUsersAssignRoleMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminUsersAssignRoleMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsersAssignRole>>, TError,{data: AssignRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsersAssignRole>>, TError,{data: AssignRoleRequest}, TContext> => {
 
@@ -2095,12 +2189,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminUsersAssignRoleMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminUsersAssignRole>>>
     export type PostApiV1AdminUsersAssignRoleMutationBody = AssignRoleRequest
-    export type PostApiV1AdminUsersAssignRoleMutationError = ErrorResponse | void
+    export type PostApiV1AdminUsersAssignRoleMutationError = ResponseEmpty | void
 
     /**
  * @summary Assign a role to a user
  */
-export const usePostApiV1AdminUsersAssignRole = <TError = ErrorResponse | void,
+export const usePostApiV1AdminUsersAssignRole = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsersAssignRole>>, TError,{data: AssignRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminUsersAssignRole>>,
@@ -2122,9 +2216,9 @@ export const getPostApiV1AdminUsersRevokeRoleUrl = () => {
   return `/api/v1/admin/users/revoke-role`
 }
 
-export const postApiV1AdminUsersRevokeRole = async (revokeRoleRequest: RevokeRoleRequest, options?: RequestInit): Promise<RevokeRoleResponse> => {
+export const postApiV1AdminUsersRevokeRole = async (revokeRoleRequest: RevokeRoleRequest, options?: RequestInit): Promise<ResponseMessageData> => {
 
-  return apiClient<RevokeRoleResponse>(getPostApiV1AdminUsersRevokeRoleUrl(),
+  return apiClient<ResponseMessageData>(getPostApiV1AdminUsersRevokeRoleUrl(),
   {
     ...options,
     method: 'POST',
@@ -2137,7 +2231,7 @@ export const postApiV1AdminUsersRevokeRole = async (revokeRoleRequest: RevokeRol
 
 
 
-export const getPostApiV1AdminUsersRevokeRoleMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1AdminUsersRevokeRoleMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsersRevokeRole>>, TError,{data: RevokeRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsersRevokeRole>>, TError,{data: RevokeRoleRequest}, TContext> => {
 
@@ -2166,12 +2260,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1AdminUsersRevokeRoleMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminUsersRevokeRole>>>
     export type PostApiV1AdminUsersRevokeRoleMutationBody = RevokeRoleRequest
-    export type PostApiV1AdminUsersRevokeRoleMutationError = ErrorResponse | void
+    export type PostApiV1AdminUsersRevokeRoleMutationError = ResponseEmpty | void
 
     /**
  * @summary Revoke a role from a user
  */
-export const usePostApiV1AdminUsersRevokeRole = <TError = ErrorResponse | void,
+export const usePostApiV1AdminUsersRevokeRole = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminUsersRevokeRole>>, TError,{data: RevokeRoleRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1AdminUsersRevokeRole>>,
@@ -2193,9 +2287,9 @@ export const getGetApiV1AdminUsersIdRolesUrl = (id: number,) => {
   return `/api/v1/admin/users/${id}/roles`
 }
 
-export const getApiV1AdminUsersIdRoles = async (id: number, options?: RequestInit): Promise<GetUserRolesResponse> => {
+export const getApiV1AdminUsersIdRoles = async (id: number, options?: RequestInit): Promise<ResponseGetUserRolesData> => {
 
-  return apiClient<GetUserRolesResponse>(getGetApiV1AdminUsersIdRolesUrl(id),
+  return apiClient<ResponseGetUserRolesData>(getGetApiV1AdminUsersIdRolesUrl(id),
   {
     ...options,
     method: 'GET'
@@ -2215,7 +2309,7 @@ export const getGetApiV1AdminUsersIdRolesQueryKey = (id: number,) => {
     }
 
 
-export const getGetApiV1AdminUsersIdRolesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ErrorResponse | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1AdminUsersIdRolesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ResponseEmpty | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -2234,10 +2328,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1AdminUsersIdRolesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>>
-export type GetApiV1AdminUsersIdRolesQueryError = ErrorResponse | void
+export type GetApiV1AdminUsersIdRolesQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ResponseEmpty | void>(
  id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>,
@@ -2247,7 +2341,7 @@ export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof g
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>,
@@ -2257,7 +2351,7 @@ export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof g
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -2265,7 +2359,7 @@ export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof g
  * @summary Get user with roles
  */
 
-export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ErrorResponse | void>(
+export function useGetApiV1AdminUsersIdRoles<TData = Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminUsersIdRoles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {

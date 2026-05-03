@@ -21,10 +21,11 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  GetVersionResponse
+  ResponseEmpty,
+  ResponseVersionData
 } from '../models';
 
-import { apiClient } from '../../../lib/api';
+import { apiClient } from '../../client';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -43,9 +44,9 @@ export const getGetApiV1VersionUrl = () => {
   return `/api/v1/version`
 }
 
-export const getApiV1Version = async ( options?: RequestInit): Promise<GetVersionResponse> => {
+export const getApiV1Version = async ( options?: RequestInit): Promise<ResponseVersionData> => {
 
-  return apiClient<GetVersionResponse>(getGetApiV1VersionUrl(),
+  return apiClient<ResponseVersionData>(getGetApiV1VersionUrl(),
   {
     ...options,
     method: 'GET'
@@ -65,7 +66,7 @@ export const getGetApiV1VersionQueryKey = () => {
     }
 
 
-export const getGetApiV1VersionQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1VersionQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -84,10 +85,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1VersionQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1Version>>>
-export type GetApiV1VersionQueryError = void
+export type GetApiV1VersionQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>(
+export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1Version>>,
@@ -97,7 +98,7 @@ export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Ver
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>(
+export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1Version>>,
@@ -107,7 +108,7 @@ export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Ver
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>(
+export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -115,7 +116,7 @@ export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Ver
  * @summary Get application version
  */
 
-export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = void>(
+export function useGetApiV1Version<TData = Awaited<ReturnType<typeof getApiV1Version>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Version>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {

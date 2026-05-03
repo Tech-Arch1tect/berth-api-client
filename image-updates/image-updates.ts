@@ -21,11 +21,11 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  ErrorResponse,
-  ImageUpdatesResponse
+  ResponseEmpty,
+  ResponseImageUpdatesData
 } from '../models';
 
-import { apiClient } from '../../../lib/api';
+import { apiClient } from '../../client';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -44,9 +44,9 @@ export const getGetApiV1ImageUpdatesUrl = () => {
   return `/api/v1/image-updates`
 }
 
-export const getApiV1ImageUpdates = async ( options?: RequestInit): Promise<ImageUpdatesResponse> => {
+export const getApiV1ImageUpdates = async ( options?: RequestInit): Promise<ResponseImageUpdatesData> => {
 
-  return apiClient<ImageUpdatesResponse>(getGetApiV1ImageUpdatesUrl(),
+  return apiClient<ResponseImageUpdatesData>(getGetApiV1ImageUpdatesUrl(),
   {
     ...options,
     method: 'GET'
@@ -66,7 +66,7 @@ export const getGetApiV1ImageUpdatesQueryKey = () => {
     }
 
 
-export const getGetApiV1ImageUpdatesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ImageUpdatesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -85,10 +85,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ImageUpdatesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ImageUpdates>>>
-export type GetApiV1ImageUpdatesQueryError = ErrorResponse | void
+export type GetApiV1ImageUpdatesQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ImageUpdates>>,
@@ -98,7 +98,7 @@ export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApi
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ImageUpdates>>,
@@ -108,7 +108,7 @@ export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApi
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -116,7 +116,7 @@ export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApi
  * @summary List available image updates
  */
 
-export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -143,9 +143,9 @@ export const getGetApiV1ServersServeridImageUpdatesUrl = (serverid: number,) => 
   return `/api/v1/servers/${serverid}/image-updates`
 }
 
-export const getApiV1ServersServeridImageUpdates = async (serverid: number, options?: RequestInit): Promise<ImageUpdatesResponse> => {
+export const getApiV1ServersServeridImageUpdates = async (serverid: number, options?: RequestInit): Promise<ResponseImageUpdatesData> => {
 
-  return apiClient<ImageUpdatesResponse>(getGetApiV1ServersServeridImageUpdatesUrl(serverid),
+  return apiClient<ResponseImageUpdatesData>(getGetApiV1ServersServeridImageUpdatesUrl(serverid),
   {
     ...options,
     method: 'GET'
@@ -165,7 +165,7 @@ export const getGetApiV1ServersServeridImageUpdatesQueryKey = (serverid: number,
     }
 
 
-export const getGetApiV1ServersServeridImageUpdatesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ErrorResponse | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ServersServeridImageUpdatesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ResponseEmpty | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -184,10 +184,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridImageUpdatesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>>
-export type GetApiV1ServersServeridImageUpdatesQueryError = ErrorResponse | void
+export type GetApiV1ServersServeridImageUpdatesQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ResponseEmpty | void>(
  serverid: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>,
@@ -197,7 +197,7 @@ export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnTyp
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>,
@@ -207,7 +207,7 @@ export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnTyp
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -215,7 +215,7 @@ export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnTyp
  * @summary List server image updates
  */
 
-export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ErrorResponse | void>(
+export function useGetApiV1ServersServeridImageUpdates<TData = Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError = ResponseEmpty | void>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridImageUpdates>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {

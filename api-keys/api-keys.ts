@@ -27,15 +27,15 @@ import type {
 import type {
   AddScopeRequest,
   CreateAPIKeyRequest,
-  CreateAPIKeyResponse,
-  ErrorResponse,
-  GetAPIKeyResponse,
-  ListAPIKeysResponse,
-  ListScopesResponse,
-  MessageResponse
+  ResponseAPIKeyInfo,
+  ResponseAPIKeyInfo2,
+  ResponseAPIKeyScopeInfo,
+  ResponseCreateAPIKeyData,
+  ResponseEmpty,
+  ResponseMessageData3
 } from '../models';
 
-import { apiClient } from '../../../lib/api';
+import { apiClient } from '../../client';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -54,9 +54,9 @@ export const getGetApiV1ApiKeysUrl = () => {
   return `/api/v1/api-keys`
 }
 
-export const getApiV1ApiKeys = async ( options?: RequestInit): Promise<ListAPIKeysResponse> => {
+export const getApiV1ApiKeys = async ( options?: RequestInit): Promise<ResponseAPIKeyInfo> => {
 
-  return apiClient<ListAPIKeysResponse>(getGetApiV1ApiKeysUrl(),
+  return apiClient<ResponseAPIKeyInfo>(getGetApiV1ApiKeysUrl(),
   {
     ...options,
     method: 'GET'
@@ -76,7 +76,7 @@ export const getGetApiV1ApiKeysQueryKey = () => {
     }
 
 
-export const getGetApiV1ApiKeysQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ApiKeysQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -95,10 +95,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ApiKeysQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ApiKeys>>>
-export type GetApiV1ApiKeysQueryError = ErrorResponse | void
+export type GetApiV1ApiKeysQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ApiKeys>>,
@@ -108,7 +108,7 @@ export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1Api
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ApiKeys>>,
@@ -118,7 +118,7 @@ export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1Api
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -126,7 +126,7 @@ export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1Api
  * @summary List API keys
  */
 
-export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeys<TData = Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeys>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -153,9 +153,9 @@ export const getPostApiV1ApiKeysUrl = () => {
   return `/api/v1/api-keys`
 }
 
-export const postApiV1ApiKeys = async (createAPIKeyRequest: CreateAPIKeyRequest, options?: RequestInit): Promise<CreateAPIKeyResponse> => {
+export const postApiV1ApiKeys = async (createAPIKeyRequest: CreateAPIKeyRequest, options?: RequestInit): Promise<ResponseCreateAPIKeyData> => {
 
-  return apiClient<CreateAPIKeyResponse>(getPostApiV1ApiKeysUrl(),
+  return apiClient<ResponseCreateAPIKeyData>(getPostApiV1ApiKeysUrl(),
   {
     ...options,
     method: 'POST',
@@ -168,7 +168,7 @@ export const postApiV1ApiKeys = async (createAPIKeyRequest: CreateAPIKeyRequest,
 
 
 
-export const getPostApiV1ApiKeysMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1ApiKeysMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ApiKeys>>, TError,{data: CreateAPIKeyRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ApiKeys>>, TError,{data: CreateAPIKeyRequest}, TContext> => {
 
@@ -197,12 +197,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1ApiKeysMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1ApiKeys>>>
     export type PostApiV1ApiKeysMutationBody = CreateAPIKeyRequest
-    export type PostApiV1ApiKeysMutationError = ErrorResponse | void
+    export type PostApiV1ApiKeysMutationError = ResponseEmpty | void
 
     /**
  * @summary Create API key
  */
-export const usePostApiV1ApiKeys = <TError = ErrorResponse | void,
+export const usePostApiV1ApiKeys = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ApiKeys>>, TError,{data: CreateAPIKeyRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1ApiKeys>>,
@@ -224,9 +224,9 @@ export const getDeleteApiV1ApiKeysIdUrl = (id: number,) => {
   return `/api/v1/api-keys/${id}`
 }
 
-export const deleteApiV1ApiKeysId = async (id: number, options?: RequestInit): Promise<MessageResponse> => {
+export const deleteApiV1ApiKeysId = async (id: number, options?: RequestInit): Promise<ResponseMessageData3> => {
 
-  return apiClient<MessageResponse>(getDeleteApiV1ApiKeysIdUrl(id),
+  return apiClient<ResponseMessageData3>(getDeleteApiV1ApiKeysIdUrl(id),
   {
     ...options,
     method: 'DELETE'
@@ -238,7 +238,7 @@ export const deleteApiV1ApiKeysId = async (id: number, options?: RequestInit): P
 
 
 
-export const getDeleteApiV1ApiKeysIdMutationOptions = <TError = ErrorResponse | void,
+export const getDeleteApiV1ApiKeysIdMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ApiKeysId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ApiKeysId>>, TError,{id: number}, TContext> => {
 
@@ -267,12 +267,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type DeleteApiV1ApiKeysIdMutationResult = NonNullable<Awaited<ReturnType<typeof deleteApiV1ApiKeysId>>>
 
-    export type DeleteApiV1ApiKeysIdMutationError = ErrorResponse | void
+    export type DeleteApiV1ApiKeysIdMutationError = ResponseEmpty | void
 
     /**
  * @summary Revoke API key
  */
-export const useDeleteApiV1ApiKeysId = <TError = ErrorResponse | void,
+export const useDeleteApiV1ApiKeysId = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ApiKeysId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1ApiKeysId>>,
@@ -294,9 +294,9 @@ export const getGetApiV1ApiKeysIdUrl = (id: number,) => {
   return `/api/v1/api-keys/${id}`
 }
 
-export const getApiV1ApiKeysId = async (id: number, options?: RequestInit): Promise<GetAPIKeyResponse> => {
+export const getApiV1ApiKeysId = async (id: number, options?: RequestInit): Promise<ResponseAPIKeyInfo2> => {
 
-  return apiClient<GetAPIKeyResponse>(getGetApiV1ApiKeysIdUrl(id),
+  return apiClient<ResponseAPIKeyInfo2>(getGetApiV1ApiKeysIdUrl(id),
   {
     ...options,
     method: 'GET'
@@ -316,7 +316,7 @@ export const getGetApiV1ApiKeysIdQueryKey = (id: number,) => {
     }
 
 
-export const getGetApiV1ApiKeysIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ErrorResponse | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ApiKeysIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ResponseEmpty | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -335,10 +335,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ApiKeysIdQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ApiKeysId>>>
-export type GetApiV1ApiKeysIdQueryError = ErrorResponse | void
+export type GetApiV1ApiKeysIdQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ResponseEmpty | void>(
  id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ApiKeysId>>,
@@ -348,7 +348,7 @@ export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1A
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ApiKeysId>>,
@@ -358,7 +358,7 @@ export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1A
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -366,7 +366,7 @@ export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1A
  * @summary Get API key
  */
 
-export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysId<TData = Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -393,9 +393,9 @@ export const getGetApiV1ApiKeysIdScopesUrl = (id: number,) => {
   return `/api/v1/api-keys/${id}/scopes`
 }
 
-export const getApiV1ApiKeysIdScopes = async (id: number, options?: RequestInit): Promise<ListScopesResponse> => {
+export const getApiV1ApiKeysIdScopes = async (id: number, options?: RequestInit): Promise<ResponseAPIKeyScopeInfo> => {
 
-  return apiClient<ListScopesResponse>(getGetApiV1ApiKeysIdScopesUrl(id),
+  return apiClient<ResponseAPIKeyScopeInfo>(getGetApiV1ApiKeysIdScopesUrl(id),
   {
     ...options,
     method: 'GET'
@@ -415,7 +415,7 @@ export const getGetApiV1ApiKeysIdScopesQueryKey = (id: number,) => {
     }
 
 
-export const getGetApiV1ApiKeysIdScopesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ErrorResponse | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ApiKeysIdScopesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ResponseEmpty | void>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -434,10 +434,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ApiKeysIdScopesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>>
-export type GetApiV1ApiKeysIdScopesQueryError = ErrorResponse | void
+export type GetApiV1ApiKeysIdScopesQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ResponseEmpty | void>(
  id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>,
@@ -447,7 +447,7 @@ export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof get
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>,
@@ -457,7 +457,7 @@ export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof get
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -465,7 +465,7 @@ export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof get
  * @summary List API key scopes
  */
 
-export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ErrorResponse | void>(
+export function useGetApiV1ApiKeysIdScopes<TData = Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError = ResponseEmpty | void>(
  id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ApiKeysIdScopes>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -493,9 +493,9 @@ export const getPostApiV1ApiKeysIdScopesUrl = (id: number,) => {
 }
 
 export const postApiV1ApiKeysIdScopes = async (id: number,
-    addScopeRequest: AddScopeRequest, options?: RequestInit): Promise<MessageResponse> => {
+    addScopeRequest: AddScopeRequest, options?: RequestInit): Promise<ResponseMessageData3> => {
 
-  return apiClient<MessageResponse>(getPostApiV1ApiKeysIdScopesUrl(id),
+  return apiClient<ResponseMessageData3>(getPostApiV1ApiKeysIdScopesUrl(id),
   {
     ...options,
     method: 'POST',
@@ -508,7 +508,7 @@ export const postApiV1ApiKeysIdScopes = async (id: number,
 
 
 
-export const getPostApiV1ApiKeysIdScopesMutationOptions = <TError = ErrorResponse | void,
+export const getPostApiV1ApiKeysIdScopesMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ApiKeysIdScopes>>, TError,{id: number;data: AddScopeRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ApiKeysIdScopes>>, TError,{id: number;data: AddScopeRequest}, TContext> => {
 
@@ -537,12 +537,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1ApiKeysIdScopesMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1ApiKeysIdScopes>>>
     export type PostApiV1ApiKeysIdScopesMutationBody = AddScopeRequest
-    export type PostApiV1ApiKeysIdScopesMutationError = ErrorResponse | void
+    export type PostApiV1ApiKeysIdScopesMutationError = ResponseEmpty | void
 
     /**
  * @summary Add scope to API key
  */
-export const usePostApiV1ApiKeysIdScopes = <TError = ErrorResponse | void,
+export const usePostApiV1ApiKeysIdScopes = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ApiKeysIdScopes>>, TError,{id: number;data: AddScopeRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1ApiKeysIdScopes>>,
@@ -566,9 +566,9 @@ export const getDeleteApiV1ApiKeysIdScopesScopeIdUrl = (id: number,
 }
 
 export const deleteApiV1ApiKeysIdScopesScopeId = async (id: number,
-    scopeId: number, options?: RequestInit): Promise<MessageResponse> => {
+    scopeId: number, options?: RequestInit): Promise<ResponseMessageData3> => {
 
-  return apiClient<MessageResponse>(getDeleteApiV1ApiKeysIdScopesScopeIdUrl(id,scopeId),
+  return apiClient<ResponseMessageData3>(getDeleteApiV1ApiKeysIdScopesScopeIdUrl(id,scopeId),
   {
     ...options,
     method: 'DELETE'
@@ -580,7 +580,7 @@ export const deleteApiV1ApiKeysIdScopesScopeId = async (id: number,
 
 
 
-export const getDeleteApiV1ApiKeysIdScopesScopeIdMutationOptions = <TError = ErrorResponse | void,
+export const getDeleteApiV1ApiKeysIdScopesScopeIdMutationOptions = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ApiKeysIdScopesScopeId>>, TError,{id: number;scopeId: number}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ApiKeysIdScopesScopeId>>, TError,{id: number;scopeId: number}, TContext> => {
 
@@ -609,12 +609,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type DeleteApiV1ApiKeysIdScopesScopeIdMutationResult = NonNullable<Awaited<ReturnType<typeof deleteApiV1ApiKeysIdScopesScopeId>>>
 
-    export type DeleteApiV1ApiKeysIdScopesScopeIdMutationError = ErrorResponse | void
+    export type DeleteApiV1ApiKeysIdScopesScopeIdMutationError = ResponseEmpty | void
 
     /**
  * @summary Remove scope from API key
  */
-export const useDeleteApiV1ApiKeysIdScopesScopeId = <TError = ErrorResponse | void,
+export const useDeleteApiV1ApiKeysIdScopesScopeId = <TError = ResponseEmpty | void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ApiKeysIdScopesScopeId>>, TError,{id: number;scopeId: number}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1ApiKeysIdScopesScopeId>>,

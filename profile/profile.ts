@@ -21,11 +21,11 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  ErrorResponse,
-  GetProfileResponse
+  ResponseEmpty,
+  ResponseUserInfo
 } from '../models';
 
-import { apiClient } from '../../../lib/api';
+import { apiClient } from '../../client';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -44,9 +44,9 @@ export const getGetApiV1ProfileUrl = () => {
   return `/api/v1/profile`
 }
 
-export const getApiV1Profile = async ( options?: RequestInit): Promise<GetProfileResponse> => {
+export const getApiV1Profile = async ( options?: RequestInit): Promise<ResponseUserInfo> => {
 
-  return apiClient<GetProfileResponse>(getGetApiV1ProfileUrl(),
+  return apiClient<ResponseUserInfo>(getGetApiV1ProfileUrl(),
   {
     ...options,
     method: 'GET'
@@ -66,7 +66,7 @@ export const getGetApiV1ProfileQueryKey = () => {
     }
 
 
-export const getGetApiV1ProfileQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ProfileQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -85,10 +85,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ProfileQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1Profile>>>
-export type GetApiV1ProfileQueryError = ErrorResponse | void
+export type GetApiV1ProfileQueryError = ResponseEmpty | void
 
 
-export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>(
+export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ResponseEmpty | void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1Profile>>,
@@ -98,7 +98,7 @@ export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Pro
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>(
+export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1Profile>>,
@@ -108,7 +108,7 @@ export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Pro
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>(
+export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -116,7 +116,7 @@ export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Pro
  * @summary Get current user profile
  */
 
-export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ErrorResponse | void>(
+export function useGetApiV1Profile<TData = Awaited<ReturnType<typeof getApiV1Profile>>, TError = ResponseEmpty | void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Profile>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
