@@ -6,6 +6,6 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface GetSessionsRequest {
-  refresh_token: string;
+export interface AuthMessageData {
+  message: string;
 }

@@ -6,6 +6,4 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface RevokeAllOtherSessionsRequest {
-  refresh_token?: string;
-}
+export interface RevokeAllOtherSessionsRequest { [key: string]: unknown }

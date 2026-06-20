@@ -6,6 +6,8 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface AuthLogoutRequest {
-  refresh_token?: string;
+export interface AuthPasswordResetConfirmRequest {
+  password: string;
+  password_confirmation: string;
+  token: string;
 }

@@ -6,17 +6,25 @@
  * OpenAPI spec version: 1.0.0
  */
 import {
-  useMutation
+  useMutation,
+  useQuery
 } from '@tanstack/react-query';
 import type {
+  DataTag,
+  DefinedInitialDataOptions,
+  DefinedUseQueryResult,
   MutationFunction,
   QueryClient,
+  QueryFunction,
+  QueryKey,
+  UndefinedInitialDataOptions,
   UseMutationOptions,
-  UseMutationResult
+  UseMutationResult,
+  UseQueryOptions,
+  UseQueryResult
 } from '@tanstack/react-query';
 
 import type {
-  GetSessionsRequest,
   ResponseEmpty,
   ResponseGetSessionsData,
   ResponseSessionMessageData,
@@ -32,10 +40,10 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * Returns all active sessions for the authenticated user. The refresh token must be provided to identify the current session.
+ * Returns all active sessions for the authenticated user.
  * @summary List user sessions
  */
-export const getPostApiV1SessionsUrl = () => {
+export const getGetApiV1SessionsUrl = () => {
 
 
 
@@ -43,66 +51,94 @@ export const getPostApiV1SessionsUrl = () => {
   return `/api/v1/sessions`
 }
 
-export const postApiV1Sessions = async (getSessionsRequest: GetSessionsRequest, options?: RequestInit): Promise<ResponseGetSessionsData> => {
+export const getApiV1Sessions = async ( options?: RequestInit): Promise<ResponseGetSessionsData> => {
 
-  return apiClient<ResponseGetSessionsData>(getPostApiV1SessionsUrl(),
+  return apiClient<ResponseGetSessionsData>(getGetApiV1SessionsUrl(),
   {
     ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(
-      getSessionsRequest,)
+    method: 'GET'
+
+
   }
 );}
 
 
 
 
-export const getPostApiV1SessionsMutationOptions = <TError = ResponseEmpty | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
-): UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext> => {
 
-const mutationKey = ['postApiV1Sessions'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+export const getGetApiV1SessionsQueryKey = () => {
+    return [
+    `/api/v1/sessions`
+    ] as const;
+    }
 
 
+export const getGetApiV1SessionsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Sessions>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Sessions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetApiV1SessionsQueryKey();
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1Sessions>>, {data: GetSessionsRequest}> = (props) => {
-          const {data} = props ?? {};
 
-          return  postApiV1Sessions(data,requestOptions)
-        }
-
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1Sessions>>> = ({ signal }) => getApiV1Sessions({ signal, ...requestOptions });
 
 
 
 
 
-  return  { mutationFn, ...mutationOptions }}
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getApiV1Sessions>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
 
-    export type PostApiV1SessionsMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1Sessions>>>
-    export type PostApiV1SessionsMutationBody = GetSessionsRequest
-    export type PostApiV1SessionsMutationError = ResponseEmpty | void
+export type GetApiV1SessionsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1Sessions>>>
+export type GetApiV1SessionsQueryError = ResponseEmpty | void
 
-    /**
+
+export function useGetApiV1Sessions<TData = Awaited<ReturnType<typeof getApiV1Sessions>>, TError = ResponseEmpty | void>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Sessions>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getApiV1Sessions>>,
+          TError,
+          Awaited<ReturnType<typeof getApiV1Sessions>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetApiV1Sessions<TData = Awaited<ReturnType<typeof getApiV1Sessions>>, TError = ResponseEmpty | void>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Sessions>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getApiV1Sessions>>,
+          TError,
+          Awaited<ReturnType<typeof getApiV1Sessions>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetApiV1Sessions<TData = Awaited<ReturnType<typeof getApiV1Sessions>>, TError = ResponseEmpty | void>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Sessions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
  * @summary List user sessions
  */
-export const usePostApiV1Sessions = <TError = ResponseEmpty | void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1Sessions>>, TError,{data: GetSessionsRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof postApiV1Sessions>>,
-        TError,
-        {data: GetSessionsRequest},
-        TContext
-      > => {
-      return useMutation(getPostApiV1SessionsMutationOptions(options), queryClient);
-    }
-    /**
+
+export function useGetApiV1Sessions<TData = Awaited<ReturnType<typeof getApiV1Sessions>>, TError = ResponseEmpty | void>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Sessions>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetApiV1SessionsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+/**
  * Revokes a specific session by ID. The user will be logged out from that device.
  * @summary Revoke a session
  */
@@ -174,7 +210,7 @@ export const usePostApiV1SessionsRevoke = <TError = ResponseEmpty | void,
       return useMutation(getPostApiV1SessionsRevokeMutationOptions(options), queryClient);
     }
     /**
- * Revokes all sessions except the current one. For JWT authentication, the refresh token must be provided in the request body.
+ * Revokes all sessions for the authenticated user except the current one.
  * @summary Revoke all other sessions
  */
 export const getPostApiV1SessionsRevokeAllOthersUrl = () => {
