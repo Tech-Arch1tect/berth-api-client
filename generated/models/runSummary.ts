@@ -5,22 +5,21 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { Component } from './component';
-import type { SkippedMount } from './skippedMount';
 
-export interface Run {
-  components: Component[];
-  error?: string;
+export interface RunSummary {
+  /** @minimum 0 */
+  added_bytes: number;
+  component_count: number;
+  components_with_errors: number;
   /** @nullable */
   finished_at?: string | null;
   id: string;
-  restic_version?: string;
-  skipped?: SkippedMount[];
+  /** @minimum 0 */
+  size_bytes: number;
   stack_name: string;
   started_at: string;
   status: string;
   stop_mode?: string;
   /** @nullable */
   verified?: boolean | null;
-  verify_error?: string;
 }
