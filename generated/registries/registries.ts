@@ -74,7 +74,7 @@ export const getGetApiV1ServersServeridRegistriesQueryKey = (serverid: number,) 
     }
 
 
-export const getGetApiV1ServersServeridRegistriesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty | void>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1ServersServeridRegistriesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty>(serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -93,10 +93,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridRegistriesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>>
-export type GetApiV1ServersServeridRegistriesQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridRegistriesQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty>(
  serverid: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>,
@@ -106,7 +106,7 @@ export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>,
@@ -116,7 +116,7 @@ export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -124,7 +124,7 @@ export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<
  * @summary List registry credentials
  */
 
-export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistries<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError = ResponseEmpty>(
  serverid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistries>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -167,7 +167,7 @@ export const postApiV1ServersServeridRegistries = async (serverid: number,
 
 
 
-export const getPostApiV1ServersServeridRegistriesMutationOptions = <TError = ResponseEmpty | void,
+export const getPostApiV1ServersServeridRegistriesMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridRegistries>>, TError,{serverid: number;data: CreateCredentialRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridRegistries>>, TError,{serverid: number;data: CreateCredentialRequest}, TContext> => {
 
@@ -196,12 +196,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1ServersServeridRegistriesMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1ServersServeridRegistries>>>
     export type PostApiV1ServersServeridRegistriesMutationBody = CreateCredentialRequest
-    export type PostApiV1ServersServeridRegistriesMutationError = ResponseEmpty | void
+    export type PostApiV1ServersServeridRegistriesMutationError = ResponseEmpty
 
     /**
  * @summary Create registry credential
  */
-export const usePostApiV1ServersServeridRegistries = <TError = ResponseEmpty | void,
+export const usePostApiV1ServersServeridRegistries = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridRegistries>>, TError,{serverid: number;data: CreateCredentialRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1ServersServeridRegistries>>,
@@ -239,7 +239,7 @@ export const deleteApiV1ServersServeridRegistriesId = async (serverid: number,
 
 
 
-export const getDeleteApiV1ServersServeridRegistriesIdMutationOptions = <TError = ResponseEmpty | void,
+export const getDeleteApiV1ServersServeridRegistriesIdMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridRegistriesId>>, TError,{serverid: number;id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridRegistriesId>>, TError,{serverid: number;id: number}, TContext> => {
 
@@ -268,12 +268,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type DeleteApiV1ServersServeridRegistriesIdMutationResult = NonNullable<Awaited<ReturnType<typeof deleteApiV1ServersServeridRegistriesId>>>
 
-    export type DeleteApiV1ServersServeridRegistriesIdMutationError = ResponseEmpty | void
+    export type DeleteApiV1ServersServeridRegistriesIdMutationError = ResponseEmpty
 
     /**
  * @summary Delete registry credential
  */
-export const useDeleteApiV1ServersServeridRegistriesId = <TError = ResponseEmpty | void,
+export const useDeleteApiV1ServersServeridRegistriesId = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridRegistriesId>>, TError,{serverid: number;id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1ServersServeridRegistriesId>>,
@@ -320,7 +320,7 @@ export const getGetApiV1ServersServeridRegistriesIdQueryKey = (serverid: number,
     }
 
 
-export const getGetApiV1ServersServeridRegistriesIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridRegistriesIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty>(serverid: number,
     id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -340,10 +340,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridRegistriesIdQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>>
-export type GetApiV1ServersServeridRegistriesIdQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridRegistriesIdQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty>(
  serverid: number,
     id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -354,7 +354,7 @@ export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnTyp
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty>(
  serverid: number,
     id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -365,7 +365,7 @@ export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnTyp
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty>(
  serverid: number,
     id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -374,7 +374,7 @@ export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnTyp
  * @summary Get registry credential
  */
 
-export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridRegistriesId<TData = Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError = ResponseEmpty>(
  serverid: number,
     id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridRegistriesId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -420,7 +420,7 @@ export const putApiV1ServersServeridRegistriesId = async (serverid: number,
 
 
 
-export const getPutApiV1ServersServeridRegistriesIdMutationOptions = <TError = ResponseEmpty | void,
+export const getPutApiV1ServersServeridRegistriesIdMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putApiV1ServersServeridRegistriesId>>, TError,{serverid: number;id: number;data: UpdateCredentialRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof putApiV1ServersServeridRegistriesId>>, TError,{serverid: number;id: number;data: UpdateCredentialRequest}, TContext> => {
 
@@ -449,12 +449,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PutApiV1ServersServeridRegistriesIdMutationResult = NonNullable<Awaited<ReturnType<typeof putApiV1ServersServeridRegistriesId>>>
     export type PutApiV1ServersServeridRegistriesIdMutationBody = UpdateCredentialRequest
-    export type PutApiV1ServersServeridRegistriesIdMutationError = ResponseEmpty | void
+    export type PutApiV1ServersServeridRegistriesIdMutationError = ResponseEmpty
 
     /**
  * @summary Update registry credential
  */
-export const usePutApiV1ServersServeridRegistriesId = <TError = ResponseEmpty | void,
+export const usePutApiV1ServersServeridRegistriesId = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putApiV1ServersServeridRegistriesId>>, TError,{serverid: number;id: number;data: UpdateCredentialRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putApiV1ServersServeridRegistriesId>>,

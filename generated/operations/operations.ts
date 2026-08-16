@@ -58,7 +58,7 @@ export const postApiV1ServersServeridStacksStacknameOperations = async (serverid
 
 
 
-export const getPostApiV1ServersServeridStacksStacknameOperationsMutationOptions = <TError = ResponseEmpty | void,
+export const getPostApiV1ServersServeridStacksStacknameOperationsMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameOperations>>, TError,{serverid: number;stackname: string;data: OperationRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameOperations>>, TError,{serverid: number;stackname: string;data: OperationRequest}, TContext> => {
 
@@ -87,12 +87,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1ServersServeridStacksStacknameOperationsMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameOperations>>>
     export type PostApiV1ServersServeridStacksStacknameOperationsMutationBody = OperationRequest
-    export type PostApiV1ServersServeridStacksStacknameOperationsMutationError = ResponseEmpty | void
+    export type PostApiV1ServersServeridStacksStacknameOperationsMutationError = ResponseEmpty
 
     /**
  * @summary Start a stack operation
  */
-export const usePostApiV1ServersServeridStacksStacknameOperations = <TError = ResponseEmpty | void,
+export const usePostApiV1ServersServeridStacksStacknameOperations = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameOperations>>, TError,{serverid: number;stackname: string;data: OperationRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameOperations>>,

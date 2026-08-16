@@ -67,7 +67,7 @@ export const postApiV1TotpDisable = async (tOTPDisableRequest: TOTPDisableReques
 
 
 
-export const getPostApiV1TotpDisableMutationOptions = <TError = ResponseEmpty | void,
+export const getPostApiV1TotpDisableMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext> => {
 
@@ -96,12 +96,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1TotpDisableMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1TotpDisable>>>
     export type PostApiV1TotpDisableMutationBody = TOTPDisableRequest
-    export type PostApiV1TotpDisableMutationError = ResponseEmpty | void
+    export type PostApiV1TotpDisableMutationError = ResponseEmpty
 
     /**
  * @summary Disable TOTP
  */
-export const usePostApiV1TotpDisable = <TError = ResponseEmpty | void,
+export const usePostApiV1TotpDisable = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpDisable>>, TError,{data: TOTPDisableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1TotpDisable>>,
@@ -138,7 +138,7 @@ export const postApiV1TotpEnable = async (tOTPEnableRequest: TOTPEnableRequest, 
 
 
 
-export const getPostApiV1TotpEnableMutationOptions = <TError = ResponseEmpty | void,
+export const getPostApiV1TotpEnableMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext> => {
 
@@ -167,12 +167,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1TotpEnableMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1TotpEnable>>>
     export type PostApiV1TotpEnableMutationBody = TOTPEnableRequest
-    export type PostApiV1TotpEnableMutationError = ResponseEmpty | void
+    export type PostApiV1TotpEnableMutationError = ResponseEmpty
 
     /**
  * @summary Enable TOTP
  */
-export const usePostApiV1TotpEnable = <TError = ResponseEmpty | void,
+export const usePostApiV1TotpEnable = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1TotpEnable>>, TError,{data: TOTPEnableRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1TotpEnable>>,
@@ -216,7 +216,7 @@ export const getGetApiV1TotpSetupQueryKey = () => {
     }
 
 
-export const getGetApiV1TotpSetupQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1TotpSetupQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -235,10 +235,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1TotpSetupQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1TotpSetup>>>
-export type GetApiV1TotpSetupQueryError = ResponseEmpty | void
+export type GetApiV1TotpSetupQueryError = ResponseEmpty
 
 
-export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1TotpSetup>>,
@@ -248,7 +248,7 @@ export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1T
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1TotpSetup>>,
@@ -258,7 +258,7 @@ export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1T
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -266,7 +266,7 @@ export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1T
  * @summary Get TOTP setup information
  */
 
-export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpSetup<TData = Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpSetup>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -315,7 +315,7 @@ export const getGetApiV1TotpStatusQueryKey = () => {
     }
 
 
-export const getGetApiV1TotpStatusQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1TotpStatusQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -334,10 +334,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1TotpStatusQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1TotpStatus>>>
-export type GetApiV1TotpStatusQueryError = ResponseEmpty | void
+export type GetApiV1TotpStatusQueryError = ResponseEmpty
 
 
-export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1TotpStatus>>,
@@ -347,7 +347,7 @@ export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1TotpStatus>>,
@@ -357,7 +357,7 @@ export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -365,7 +365,7 @@ export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1
  * @summary Get TOTP status
  */
 
-export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty | void>(
+export function useGetApiV1TotpStatus<TData = Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1TotpStatus>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {

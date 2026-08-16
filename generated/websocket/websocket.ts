@@ -55,9 +55,9 @@ export const getGetWsApiServersServeridStacksStacknameEventsUrl = (serverid: num
 }
 
 export const getWsApiServersServeridStacksStacknameEvents = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<void> => {
+    stackname: string, options?: RequestInit): Promise<unknown> => {
 
-  return apiClient<void>(getGetWsApiServersServeridStacksStacknameEventsUrl(serverid,stackname),
+  return apiClient<unknown>(getGetWsApiServersServeridStacksStacknameEventsUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -78,7 +78,7 @@ export const getGetWsApiServersServeridStacksStacknameEventsQueryKey = (serverid
     }
 
 
-export const getGetWsApiServersServeridStacksStacknameEventsQueryOptions = <TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty | void>(serverid: number,
+export const getGetWsApiServersServeridStacksStacknameEventsQueryOptions = <TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -98,10 +98,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetWsApiServersServeridStacksStacknameEventsQueryResult = NonNullable<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>>
-export type GetWsApiServersServeridStacksStacknameEventsQueryError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty | void
+export type GetWsApiServersServeridStacksStacknameEventsQueryError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty
 
 
-export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -112,7 +112,7 @@ export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -123,7 +123,7 @@ export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -132,7 +132,7 @@ export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<
  * @summary Per-stack status event stream (WebSocket)
  */
 
-export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameEvents<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError = ContainerStatusEvent | StackStatusEvent | ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameEvents>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -164,9 +164,9 @@ export const getGetWsApiServersServeridStacksStacknameOperationsOperationIdUrl =
 
 export const getWsApiServersServeridStacksStacknameOperationsOperationId = async (serverid: number,
     stackname: string,
-    operationId: string, options?: RequestInit): Promise<void> => {
+    operationId: string, options?: RequestInit): Promise<unknown> => {
 
-  return apiClient<void>(getGetWsApiServersServeridStacksStacknameOperationsOperationIdUrl(serverid,stackname,operationId),
+  return apiClient<unknown>(getGetWsApiServersServeridStacksStacknameOperationsOperationIdUrl(serverid,stackname,operationId),
   {
     ...options,
     method: 'GET'
@@ -188,7 +188,7 @@ export const getGetWsApiServersServeridStacksStacknameOperationsOperationIdQuery
     }
 
 
-export const getGetWsApiServersServeridStacksStacknameOperationsOperationIdQueryOptions = <TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty | void>(serverid: number,
+export const getGetWsApiServersServeridStacksStacknameOperationsOperationIdQueryOptions = <TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty>(serverid: number,
     stackname: string,
     operationId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
@@ -209,10 +209,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetWsApiServersServeridStacksStacknameOperationsOperationIdQueryResult = NonNullable<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>>
-export type GetWsApiServersServeridStacksStacknameOperationsOperationIdQueryError = StreamMessage | ResponseEmpty | void
+export type GetWsApiServersServeridStacksStacknameOperationsOperationIdQueryError = StreamMessage | ResponseEmpty
 
 
-export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty>(
  serverid: number,
     stackname: string,
     operationId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError, TData>> & Pick<
@@ -224,7 +224,7 @@ export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<T
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty>(
  serverid: number,
     stackname: string,
     operationId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError, TData>> & Pick<
@@ -236,7 +236,7 @@ export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<T
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty>(
  serverid: number,
     stackname: string,
     operationId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -246,7 +246,7 @@ export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<T
  * @summary Operation output stream (WebSocket)
  */
 
-export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameOperationsOperationId<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError = StreamMessage | ResponseEmpty>(
  serverid: number,
     stackname: string,
     operationId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameOperationsOperationId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -277,9 +277,9 @@ export const getGetWsApiServersServeridStacksStacknameTerminalUrl = (serverid: n
 }
 
 export const getWsApiServersServeridStacksStacknameTerminal = async (serverid: number,
-    stackname: string, options?: RequestInit): Promise<void> => {
+    stackname: string, options?: RequestInit): Promise<unknown> => {
 
-  return apiClient<void>(getGetWsApiServersServeridStacksStacknameTerminalUrl(serverid,stackname),
+  return apiClient<unknown>(getGetWsApiServersServeridStacksStacknameTerminalUrl(serverid,stackname),
   {
     ...options,
     method: 'GET'
@@ -300,7 +300,7 @@ export const getGetWsApiServersServeridStacksStacknameTerminalQueryKey = (server
     }
 
 
-export const getGetWsApiServersServeridStacksStacknameTerminalQueryOptions = <TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty | void>(serverid: number,
+export const getGetWsApiServersServeridStacksStacknameTerminalQueryOptions = <TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -320,10 +320,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetWsApiServersServeridStacksStacknameTerminalQueryResult = NonNullable<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>>
-export type GetWsApiServersServeridStacksStacknameTerminalQueryError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty | void
+export type GetWsApiServersServeridStacksStacknameTerminalQueryError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty
 
 
-export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -334,7 +334,7 @@ export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -345,7 +345,7 @@ export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -354,7 +354,7 @@ export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaite
  * @summary Interactive container terminal (WebSocket)
  */
 
-export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty | void>(
+export function useGetWsApiServersServeridStacksStacknameTerminal<TData = Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError = TerminalStartMessage | TerminalInputMessage | TerminalResizeMessage | TerminalCloseMessage | TerminalOutputMessage | TerminalSuccessMessage | TerminalErrorMessage | ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getWsApiServersServeridStacksStacknameTerminal>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient

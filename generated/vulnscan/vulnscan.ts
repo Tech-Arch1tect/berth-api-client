@@ -81,7 +81,7 @@ export const getGetApiV1ServersServeridStacksStacknameVulnscanQueryKey = (server
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameVulnscanQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameVulnscanQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -101,10 +101,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameVulnscanQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>>
-export type GetApiV1ServersServeridStacksStacknameVulnscanQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameVulnscanQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -115,7 +115,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -126,7 +126,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -135,7 +135,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaite
  * @summary Get latest scan for stack
  */
 
-export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscan<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscan>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -181,7 +181,7 @@ export const postApiV1ServersServeridStacksStacknameVulnscan = async (serverid: 
 
 
 
-export const getPostApiV1ServersServeridStacksStacknameVulnscanMutationOptions = <TError = ResponseEmpty | void,
+export const getPostApiV1ServersServeridStacksStacknameVulnscanMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameVulnscan>>, TError,{serverid: number;stackname: string;data: StartScanRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameVulnscan>>, TError,{serverid: number;stackname: string;data: StartScanRequest}, TContext> => {
 
@@ -210,12 +210,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PostApiV1ServersServeridStacksStacknameVulnscanMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameVulnscan>>>
     export type PostApiV1ServersServeridStacksStacknameVulnscanMutationBody = StartScanRequest
-    export type PostApiV1ServersServeridStacksStacknameVulnscanMutationError = ResponseEmpty | void
+    export type PostApiV1ServersServeridStacksStacknameVulnscanMutationError = ResponseEmpty
 
     /**
  * @summary Start vulnerability scan
  */
-export const usePostApiV1ServersServeridStacksStacknameVulnscan = <TError = ResponseEmpty | void,
+export const usePostApiV1ServersServeridStacksStacknameVulnscan = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameVulnscan>>, TError,{serverid: number;stackname: string;data: StartScanRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameVulnscan>>,
@@ -262,7 +262,7 @@ export const getGetApiV1ServersServeridStacksStacknameVulnscanHistoryQueryKey = 
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameVulnscanHistoryQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameVulnscanHistoryQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -282,10 +282,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameVulnscanHistoryQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>>
-export type GetApiV1ServersServeridStacksStacknameVulnscanHistoryQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameVulnscanHistoryQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -296,7 +296,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData =
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -307,7 +307,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData =
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -316,7 +316,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData =
  * @summary Get scan history for stack
  */
 
-export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanHistory<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanHistory>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -379,7 +379,7 @@ export const getGetApiV1ServersServeridStacksStacknameVulnscanTrendQueryKey = (s
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameVulnscanTrendQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameVulnscanTrendQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty>(serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameVulnscanTrendParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
@@ -400,10 +400,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameVulnscanTrendQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>>
-export type GetApiV1ServersServeridStacksStacknameVulnscanTrendQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameVulnscanTrendQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params: undefined |  GetApiV1ServersServeridStacksStacknameVulnscanTrendParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError, TData>> & Pick<
@@ -415,7 +415,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = A
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameVulnscanTrendParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError, TData>> & Pick<
@@ -427,7 +427,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = A
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameVulnscanTrendParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -437,7 +437,7 @@ export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = A
  * @summary Get scan trend for stack
  */
 
-export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameVulnscanTrend<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameVulnscanTrendParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameVulnscanTrend>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -491,7 +491,7 @@ export const getGetApiV1VulnscanCompareBaseScanIdCompareScanIdQueryKey = (baseSc
     }
 
 
-export const getGetApiV1VulnscanCompareBaseScanIdCompareScanIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty | void>(baseScanId: number,
+export const getGetApiV1VulnscanCompareBaseScanIdCompareScanIdQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty>(baseScanId: number,
     compareScanId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -511,10 +511,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1VulnscanCompareBaseScanIdCompareScanIdQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>>
-export type GetApiV1VulnscanCompareBaseScanIdCompareScanIdQueryError = ResponseEmpty | void
+export type GetApiV1VulnscanCompareBaseScanIdCompareScanIdQueryError = ResponseEmpty
 
 
-export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty>(
  baseScanId: number,
     compareScanId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -525,7 +525,7 @@ export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty>(
  baseScanId: number,
     compareScanId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -536,7 +536,7 @@ export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaite
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty>(
  baseScanId: number,
     compareScanId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -545,7 +545,7 @@ export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaite
  * @summary Compare two scans
  */
 
-export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanCompareBaseScanIdCompareScanId<TData = Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError = ResponseEmpty>(
  baseScanId: number,
     compareScanId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanCompareBaseScanIdCompareScanId>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -595,7 +595,7 @@ export const getGetApiV1VulnscanScanidQueryKey = (scanid: number,) => {
     }
 
 
-export const getGetApiV1VulnscanScanidQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty | void>(scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1VulnscanScanidQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty>(scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -614,10 +614,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1VulnscanScanidQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1VulnscanScanid>>>
-export type GetApiV1VulnscanScanidQueryError = ResponseEmpty | void
+export type GetApiV1VulnscanScanidQueryError = ResponseEmpty
 
 
-export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty>(
  scanid: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1VulnscanScanid>>,
@@ -627,7 +627,7 @@ export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getA
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty>(
  scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1VulnscanScanid>>,
@@ -637,7 +637,7 @@ export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getA
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty>(
  scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -645,7 +645,7 @@ export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getA
  * @summary Get scan by ID
  */
 
-export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanid<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError = ResponseEmpty>(
  scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanid>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -694,7 +694,7 @@ export const getGetApiV1VulnscanScanidSummaryQueryKey = (scanid: number,) => {
     }
 
 
-export const getGetApiV1VulnscanScanidSummaryQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty | void>(scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1VulnscanScanidSummaryQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty>(scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -713,10 +713,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1VulnscanScanidSummaryQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>>
-export type GetApiV1VulnscanScanidSummaryQueryError = ResponseEmpty | void
+export type GetApiV1VulnscanScanidSummaryQueryError = ResponseEmpty
 
 
-export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty>(
  scanid: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>,
@@ -726,7 +726,7 @@ export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<type
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty>(
  scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>,
@@ -736,7 +736,7 @@ export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<type
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty>(
  scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -744,7 +744,7 @@ export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<type
  * @summary Get scan summary
  */
 
-export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty | void>(
+export function useGetApiV1VulnscanScanidSummary<TData = Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError = ResponseEmpty>(
  scanid: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1VulnscanScanidSummary>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {

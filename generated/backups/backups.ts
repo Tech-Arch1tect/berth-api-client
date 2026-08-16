@@ -77,7 +77,7 @@ export const getGetApiV1BackupsQueryKey = () => {
     }
 
 
-export const getGetApiV1BackupsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty | void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Backups>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+export const getGetApiV1BackupsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Backups>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -96,10 +96,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1BackupsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1Backups>>>
-export type GetApiV1BackupsQueryError = ResponseEmpty | void
+export type GetApiV1BackupsQueryError = ResponseEmpty
 
 
-export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Backups>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1Backups>>,
@@ -109,7 +109,7 @@ export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Bac
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Backups>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV1Backups>>,
@@ -119,7 +119,7 @@ export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Bac
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Backups>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -127,7 +127,7 @@ export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Bac
  * @summary List backup coverage across every reachable server
  */
 
-export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1Backups<TData = Awaited<ReturnType<typeof getApiV1Backups>>, TError = ResponseEmpty>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1Backups>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -189,7 +189,7 @@ export const getGetApiV1ServersServeridStacksStacknameBackupsQueryKey = (serveri
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameBackupsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameBackupsQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty>(serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameBackupsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
@@ -210,10 +210,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameBackupsQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>>
-export type GetApiV1ServersServeridStacksStacknameBackupsQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameBackupsQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params: undefined |  GetApiV1ServersServeridStacksStacknameBackupsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError, TData>> & Pick<
@@ -225,7 +225,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameBackupsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError, TData>> & Pick<
@@ -237,7 +237,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameBackupsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -247,7 +247,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited
  * @summary List stack backups
  */
 
-export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     params?: GetApiV1ServersServeridStacksStacknameBackupsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackups>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -294,7 +294,7 @@ export const deleteApiV1ServersServeridStacksStacknameBackupsBackupid = async (s
 
 
 
-export const getDeleteApiV1ServersServeridStacksStacknameBackupsBackupidMutationOptions = <TError = ResponseEmpty | void,
+export const getDeleteApiV1ServersServeridStacksStacknameBackupsBackupidMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError,{serverid: number;stackname: string;backupid: string}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError,{serverid: number;stackname: string;backupid: string}, TContext> => {
 
@@ -323,12 +323,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type DeleteApiV1ServersServeridStacksStacknameBackupsBackupidMutationResult = NonNullable<Awaited<ReturnType<typeof deleteApiV1ServersServeridStacksStacknameBackupsBackupid>>>
 
-    export type DeleteApiV1ServersServeridStacksStacknameBackupsBackupidMutationError = ResponseEmpty | void
+    export type DeleteApiV1ServersServeridStacksStacknameBackupsBackupidMutationError = ResponseEmpty
 
     /**
  * @summary Delete a stack backup
  */
-export const useDeleteApiV1ServersServeridStacksStacknameBackupsBackupid = <TError = ResponseEmpty | void,
+export const useDeleteApiV1ServersServeridStacksStacknameBackupsBackupid = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError,{serverid: number;stackname: string;backupid: string}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1ServersServeridStacksStacknameBackupsBackupid>>,
@@ -378,7 +378,7 @@ export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidQueryKey = 
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty>(serverid: number,
     stackname: string,
     backupid: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
@@ -399,10 +399,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameBackupsBackupidQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>>
-export type GetApiV1ServersServeridStacksStacknameBackupsBackupidQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameBackupsBackupidQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError, TData>> & Pick<
@@ -414,7 +414,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData =
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError, TData>> & Pick<
@@ -426,7 +426,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData =
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -436,7 +436,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData =
  * @summary Get a stack backup
  */
 
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupid<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupid>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -503,7 +503,7 @@ export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadQue
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty>(serverid: number,
     stackname: string,
     backupid: string,
     params: GetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -525,10 +525,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>>
-export type GetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,
@@ -541,7 +541,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,
@@ -554,7 +554,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,
@@ -565,7 +565,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload
  * @summary Download files from a backup
  */
 
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidDownload<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidDownload>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,
@@ -633,7 +633,7 @@ export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidFilesQueryK
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidFilesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameBackupsBackupidFilesQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty>(serverid: number,
     stackname: string,
     backupid: string,
     params: GetApiV1ServersServeridStacksStacknameBackupsBackupidFilesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
@@ -655,10 +655,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameBackupsBackupidFilesQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>>
-export type GetApiV1ServersServeridStacksStacknameBackupsBackupidFilesQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameBackupsBackupidFilesQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,
@@ -671,7 +671,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TD
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,
@@ -684,7 +684,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TD
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,
@@ -695,7 +695,7 @@ export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TD
  * @summary List files inside a backup
  */
 
-export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameBackupsBackupidFiles<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameBackupsBackupidFiles>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string,
     backupid: string,

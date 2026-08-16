@@ -75,7 +75,7 @@ export const getGetApiV1ServersServeridStacksStacknameComposeQueryKey = (serveri
     }
 
 
-export const getGetApiV1ServersServeridStacksStacknameComposeQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty | void>(serverid: number,
+export const getGetApiV1ServersServeridStacksStacknameComposeQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty>(serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
 ) => {
 
@@ -95,10 +95,10 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 }
 
 export type GetApiV1ServersServeridStacksStacknameComposeQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>>
-export type GetApiV1ServersServeridStacksStacknameComposeQueryError = ResponseEmpty | void
+export type GetApiV1ServersServeridStacksStacknameComposeQueryError = ResponseEmpty
 
 
-export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
@@ -109,7 +109,7 @@ export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
@@ -120,7 +120,7 @@ export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited
       >, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -129,7 +129,7 @@ export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited
  * @summary Get compose configuration
  */
 
-export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty | void>(
+export function useGetApiV1ServersServeridStacksStacknameCompose<TData = Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError = ResponseEmpty>(
  serverid: number,
     stackname: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1ServersServeridStacksStacknameCompose>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient
@@ -175,7 +175,7 @@ export const patchApiV1ServersServeridStacksStacknameCompose = async (serverid: 
 
 
 
-export const getPatchApiV1ServersServeridStacksStacknameComposeMutationOptions = <TError = ResponseEmpty | void,
+export const getPatchApiV1ServersServeridStacksStacknameComposeMutationOptions = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
 ): UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext> => {
 
@@ -204,12 +204,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PatchApiV1ServersServeridStacksStacknameComposeMutationResult = NonNullable<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>>
     export type PatchApiV1ServersServeridStacksStacknameComposeMutationBody = UpdateComposeRequest
-    export type PatchApiV1ServersServeridStacksStacknameComposeMutationError = ResponseEmpty | void
+    export type PatchApiV1ServersServeridStacksStacknameComposeMutationError = ResponseEmpty
 
     /**
  * @summary Update compose configuration
  */
-export const usePatchApiV1ServersServeridStacksStacknameCompose = <TError = ResponseEmpty | void,
+export const usePatchApiV1ServersServeridStacksStacknameCompose = <TError = ResponseEmpty,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>, TError,{serverid: number;stackname: string;data: UpdateComposeRequest}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof patchApiV1ServersServeridStacksStacknameCompose>>,
