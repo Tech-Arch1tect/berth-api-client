@@ -31,8 +31,10 @@ import type {
   ResponseBackupFileListing,
   ResponseDeleteResponse,
   ResponseEmpty,
+  ResponseHistoryState,
   ResponseListResponse,
   ResponseOverviewResponse,
+  ResponseRebuildResult,
   ResponseRun
 } from '../models';
 
@@ -57,6 +59,107 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
   }
   return result;
 };
+
+export const getGetApiV1AdminServersIdBackupStorageUrl = (id: number,) => {
+
+
+
+
+  return `/api/v1/admin/servers/${id}/backup-storage`
+}
+
+/**
+ * Returns exact agent-local backup history counts for storage lifecycle decisions. Requires admin server read access.
+ * @summary Read a server's backup storage history status
+ */
+export const getApiV1AdminServersIdBackupStorage = async (id: number, options?: Parameters<typeof apiClient>[1]): Promise<ResponseHistoryState> => {
+
+  return apiClient<ResponseHistoryState>(getGetApiV1AdminServersIdBackupStorageUrl(id),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetApiV1AdminServersIdBackupStorageQueryKey = (id: number,) => {
+    return [
+    `/api/v1/admin/servers/${id}/backup-storage`
+    ] as const;
+    }
+
+
+export const getGetApiV1AdminServersIdBackupStorageQueryOptions = <TData = Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError = ResponseEmpty>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetApiV1AdminServersIdBackupStorageQueryKey(id);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>> = ({ signal }) => getApiV1AdminServersIdBackupStorage(id, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: id !== null && id !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetApiV1AdminServersIdBackupStorageQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>>
+export type GetApiV1AdminServersIdBackupStorageQueryError = ResponseEmpty
+
+
+export function useGetApiV1AdminServersIdBackupStorage<TData = Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError = ResponseEmpty>(
+ id: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>,
+          TError,
+          Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetApiV1AdminServersIdBackupStorage<TData = Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError = ResponseEmpty>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>,
+          TError,
+          Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetApiV1AdminServersIdBackupStorage<TData = Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError = ResponseEmpty>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Read a server's backup storage history status
+ */
+
+export function useGetApiV1AdminServersIdBackupStorage<TData = Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError = ResponseEmpty>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getApiV1AdminServersIdBackupStorage>>, TError, TData>>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetApiV1AdminServersIdBackupStorageQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
 
 export const getGetApiV1BackupsUrl = () => {
 
@@ -283,7 +386,80 @@ export function useGetApiV1ServersServeridStacksStacknameBackups<TData = Awaited
 
 
 
-export const getDeleteApiV1ServersServeridStacksStacknameBackupsBackupidUrl = (serverid: number,
+export const getPostApiV1ServersServeridStacksStacknameBackupsRebuildUrl = (serverid: number,
+    stackname: string,) => {
+
+
+
+
+  return `/api/v1/servers/${serverid}/stacks/${stackname}/backups/rebuild`
+}
+
+/**
+ * Reads the stack's restic repository on the agent and adds any backup runs that are missing from the agent's metadata; existing metadata is never overwritten. Requires backups to be enabled with an encryption password on the server
+ * @summary Rebuild a stack's backup history from its repository
+ */
+export const postApiV1ServersServeridStacksStacknameBackupsRebuild = async (serverid: number,
+    stackname: string, options?: Parameters<typeof apiClient>[1]): Promise<ResponseRebuildResult> => {
+
+  return apiClient<ResponseRebuildResult>(getPostApiV1ServersServeridStacksStacknameBackupsRebuildUrl(serverid,stackname),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getPostApiV1ServersServeridStacksStacknameBackupsRebuildMutationOptions = <TError = ResponseEmpty,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameBackupsRebuild>>, TError,{serverid: number;stackname: string}, TContext>, request?: SecondParameter<typeof apiClient>}
+): UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameBackupsRebuild>>, TError,{serverid: number;stackname: string}, TContext> => {
+
+const mutationKey = ['postApiV1ServersServeridStacksStacknameBackupsRebuild'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameBackupsRebuild>>, {serverid: number;stackname: string}> = (props) => {
+          const {serverid,stackname} = props ?? {};
+
+          return  postApiV1ServersServeridStacksStacknameBackupsRebuild(serverid,stackname,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostApiV1ServersServeridStacksStacknameBackupsRebuildMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameBackupsRebuild>>>
+
+    export type PostApiV1ServersServeridStacksStacknameBackupsRebuildMutationError = ResponseEmpty
+
+    /**
+ * @summary Rebuild a stack's backup history from its repository
+ */
+export const usePostApiV1ServersServeridStacksStacknameBackupsRebuild = <TError = ResponseEmpty,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameBackupsRebuild>>, TError,{serverid: number;stackname: string}, TContext>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postApiV1ServersServeridStacksStacknameBackupsRebuild>>,
+        TError,
+        {serverid: number;stackname: string},
+        TContext
+      > => {
+      return useMutation(getPostApiV1ServersServeridStacksStacknameBackupsRebuildMutationOptions(options), queryClient);
+    }
+    export const getDeleteApiV1ServersServeridStacksStacknameBackupsBackupidUrl = (serverid: number,
     stackname: string,
     backupid: string,) => {
 

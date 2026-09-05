@@ -20,6 +20,11 @@ export interface ServerInfo {
   is_active: boolean;
   name: string;
   port: number;
+  /**
+     * @minimum 0
+     * @nullable
+     */
+  s3_bucket_id?: number | null;
   skip_ssl_verification: boolean;
   updated_at: string;
 }

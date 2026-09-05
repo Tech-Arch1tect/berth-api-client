@@ -18,6 +18,11 @@ export interface Server {
   is_active: boolean;
   name: string;
   port: number;
+  /**
+     * @minimum 0
+     * @nullable
+     */
+  s3_bucket_id?: number | null;
   /** @nullable */
   skip_ssl_verification?: boolean | null;
   updated_at: string;
