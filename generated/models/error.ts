@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ErrorDetails } from './errorDetails.ts';
+import type { ErrorDetails } from './errorDetails';
 
 export interface Error {
   code: string;

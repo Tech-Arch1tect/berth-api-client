@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { BuildConfigArgs } from './buildConfigArgs.ts';
+import type { BuildConfigArgs } from './buildConfigArgs';
 
 export interface BuildConfig {
   args?: BuildConfigArgs;

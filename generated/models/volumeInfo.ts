@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { VolumeInfoLabels } from './volumeInfoLabels.ts';
+import type { VolumeInfoLabels } from './volumeInfoLabels';
 
 export interface VolumeInfo {
   anonymous: boolean;

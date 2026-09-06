@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { RoleInfo } from './roleInfo.ts';
-import type { UserInfo } from './userInfo.ts';
+import type { RoleInfo } from './roleInfo';
+import type { UserInfo } from './userInfo';
 
 export interface GetUserRolesData {
   all_roles: RoleInfo[];

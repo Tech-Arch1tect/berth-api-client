@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { DeletedAt } from './deletedAt.ts';
-import type { Server } from './server.ts';
-import type { User } from './user.ts';
+import type { DeletedAt } from './deletedAt';
+import type { Server } from './server';
+import type { User } from './user';
 
 export interface OperationLog {
   command: string;

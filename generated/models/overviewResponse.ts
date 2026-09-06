@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ServerBackups } from './serverBackups.ts';
+import type { ServerBackups } from './serverBackups';
 
 export interface OverviewResponse {
   servers: ServerBackups[];

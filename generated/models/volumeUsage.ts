@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { VolumeMount } from './volumeMount.ts';
+import type { VolumeMount } from './volumeMount';
 
 export interface VolumeUsage {
   container_name: string;

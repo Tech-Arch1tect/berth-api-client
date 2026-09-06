@@ -5,11 +5,11 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { RawComposeConfigConfigs } from './rawComposeConfigConfigs.ts';
-import type { RawComposeConfigNetworks } from './rawComposeConfigNetworks.ts';
-import type { RawComposeConfigSecrets } from './rawComposeConfigSecrets.ts';
-import type { RawComposeConfigServices } from './rawComposeConfigServices.ts';
-import type { RawComposeConfigVolumes } from './rawComposeConfigVolumes.ts';
+import type { RawComposeConfigConfigs } from './rawComposeConfigConfigs';
+import type { RawComposeConfigNetworks } from './rawComposeConfigNetworks';
+import type { RawComposeConfigSecrets } from './rawComposeConfigSecrets';
+import type { RawComposeConfigServices } from './rawComposeConfigServices';
+import type { RawComposeConfigVolumes } from './rawComposeConfigVolumes';
 
 export interface RawComposeConfig {
   compose_file: string;

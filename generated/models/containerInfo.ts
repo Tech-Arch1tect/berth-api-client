@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ContainerInfoLabels } from './containerInfoLabels.ts';
+import type { ContainerInfoLabels } from './containerInfoLabels';
 
 export interface ContainerInfo {
   created: string;

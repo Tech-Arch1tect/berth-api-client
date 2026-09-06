@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { RegistryCredential } from './registryCredential.ts';
+import type { RegistryCredential } from './registryCredential';
 
 export interface OperationRequest {
   command: string;

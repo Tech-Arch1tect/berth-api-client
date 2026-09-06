@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ImageUpdate } from './imageUpdate.ts';
+import type { ImageUpdate } from './imageUpdate';
 
 export interface ImageUpdatesData {
   updates: ImageUpdate[];

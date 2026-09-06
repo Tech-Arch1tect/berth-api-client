@@ -5,6 +5,6 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { NewServiceConfig } from './newServiceConfig.ts';
+import type { NewServiceConfig } from './newServiceConfig';
 
 export type ComposeChangesAddServices = {[key: string]: NewServiceConfig};

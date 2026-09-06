@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { Container } from './container.ts';
+import type { Container } from './container';
 
 export interface ComposeService {
   containers: Container[];

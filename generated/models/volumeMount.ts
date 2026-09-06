@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { VolumeMountBindOptions } from './volumeMountBindOptions.ts';
-import type { VolumeMountTmpfsOptions } from './volumeMountTmpfsOptions.ts';
+import type { VolumeMountBindOptions } from './volumeMountBindOptions';
+import type { VolumeMountTmpfsOptions } from './volumeMountTmpfsOptions';
 
 export interface VolumeMount {
   bind_options?: VolumeMountBindOptions;

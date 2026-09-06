@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { OperationLogInfo } from './operationLogInfo.ts';
+import type { OperationLogInfo } from './operationLogInfo';
 
 export interface RunningOperationsData {
   operations: OperationLogInfo[];

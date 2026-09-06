@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { EnvironmentVariable } from './environmentVariable.ts';
+import type { EnvironmentVariable } from './environmentVariable';
 
 export interface ServiceEnvironment {
   service_name?: string;

@@ -5,16 +5,16 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { BuildConfig } from './buildConfig.ts';
-import type { CommandConfig } from './commandConfig.ts';
-import type { DeployConfig } from './deployConfig.ts';
-import type { HealthcheckConfig } from './healthcheckConfig.ts';
-import type { PortMapping } from './portMapping.ts';
-import type { ServiceChangesDependsOn } from './serviceChangesDependsOn.ts';
-import type { ServiceChangesEnvironment } from './serviceChangesEnvironment.ts';
-import type { ServiceChangesLabels } from './serviceChangesLabels.ts';
-import type { ServiceChangesNetworks } from './serviceChangesNetworks.ts';
-import type { VolumeMount2 } from './volumeMount2.ts';
+import type { BuildConfig } from './buildConfig';
+import type { CommandConfig } from './commandConfig';
+import type { DeployConfig } from './deployConfig';
+import type { HealthcheckConfig } from './healthcheckConfig';
+import type { PortMapping } from './portMapping';
+import type { ServiceChangesDependsOn } from './serviceChangesDependsOn';
+import type { ServiceChangesEnvironment } from './serviceChangesEnvironment';
+import type { ServiceChangesLabels } from './serviceChangesLabels';
+import type { ServiceChangesNetworks } from './serviceChangesNetworks';
+import type { VolumeMount2 } from './volumeMount2';
 
 export interface ServiceChanges {
   build?: BuildConfig | null;

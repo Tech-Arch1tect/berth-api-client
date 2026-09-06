@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { NetworkInfo } from './networkInfo.ts';
+import type { NetworkInfo } from './networkInfo';
 
 export interface NetworkSummary {
   networks: NetworkInfo[];

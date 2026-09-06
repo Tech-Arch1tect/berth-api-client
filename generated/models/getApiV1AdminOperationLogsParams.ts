@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { GetApiV1AdminOperationLogsStatus } from './getApiV1AdminOperationLogsStatus.ts';
+import type { GetApiV1AdminOperationLogsStatus } from './getApiV1AdminOperationLogsStatus';
 
 export type GetApiV1AdminOperationLogsParams = {
 /**

@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { HealthLog } from './healthLog.ts';
+import type { HealthLog } from './healthLog';
 
 export interface HealthStatus {
   failing_streak?: number;

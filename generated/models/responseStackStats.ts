@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { Error } from './error.ts';
-import type { Meta } from './meta.ts';
-import type { StackStats } from './stackStats.ts';
+import type { Error } from './error';
+import type { Meta } from './meta';
+import type { StackStats } from './stackStats';
 
 export interface ResponseStackStats {
   data: StackStats;

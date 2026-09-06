@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ImageConfigExposedPorts } from './imageConfigExposedPorts.ts';
-import type { ImageConfigLabels } from './imageConfigLabels.ts';
+import type { ImageConfigExposedPorts } from './imageConfigExposedPorts';
+import type { ImageConfigLabels } from './imageConfigLabels';
 
 export interface ImageConfig {
   cmd?: string[];

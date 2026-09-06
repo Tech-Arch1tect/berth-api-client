@@ -5,10 +5,10 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { NetworkContainers } from './networkContainers.ts';
-import type { NetworkIPAM } from './networkIPAM.ts';
-import type { NetworkLabels } from './networkLabels.ts';
-import type { NetworkOptions } from './networkOptions.ts';
+import type { NetworkContainers } from './networkContainers';
+import type { NetworkIPAM } from './networkIPAM';
+import type { NetworkLabels } from './networkLabels';
+import type { NetworkOptions } from './networkOptions';
 
 export interface Network {
   containers?: NetworkContainers;

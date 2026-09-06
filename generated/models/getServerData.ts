@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ServerInfo } from './serverInfo.ts';
+import type { ServerInfo } from './serverInfo';
 
 export interface GetServerData {
   server: ServerInfo;

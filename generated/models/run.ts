@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { Component } from './component.ts';
-import type { SkippedMount } from './skippedMount.ts';
+import type { Component } from './component';
+import type { SkippedMount } from './skippedMount';
 
 export interface Run {
   components: Component[];

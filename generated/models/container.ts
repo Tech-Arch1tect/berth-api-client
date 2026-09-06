@@ -5,13 +5,13 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ContainerLabels } from './containerLabels.ts';
-import type { ContainerMount } from './containerMount.ts';
-import type { ContainerNetwork } from './containerNetwork.ts';
-import type { HealthStatus } from './healthStatus.ts';
-import type { Port } from './port.ts';
-import type { ResourceLimits } from './resourceLimits.ts';
-import type { RestartPolicy } from './restartPolicy.ts';
+import type { ContainerLabels } from './containerLabels';
+import type { ContainerMount } from './containerMount';
+import type { ContainerNetwork } from './containerNetwork';
+import type { HealthStatus } from './healthStatus';
+import type { Port } from './port';
+import type { ResourceLimits } from './resourceLimits';
+import type { RestartPolicy } from './restartPolicy';
 
 export interface Container {
   command?: string[];

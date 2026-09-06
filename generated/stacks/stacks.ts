@@ -40,7 +40,7 @@ import type {
   ResponseStackVolumesData
 } from '../models';
 
-import { apiClient } from '../../client.ts';
+import { apiClient } from '../../client';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];

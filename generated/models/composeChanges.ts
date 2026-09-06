@@ -5,13 +5,13 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ComposeChangesAddServices } from './composeChangesAddServices.ts';
-import type { ComposeChangesConfigChanges } from './composeChangesConfigChanges.ts';
-import type { ComposeChangesNetworkChanges } from './composeChangesNetworkChanges.ts';
-import type { ComposeChangesRenameServices } from './composeChangesRenameServices.ts';
-import type { ComposeChangesSecretChanges } from './composeChangesSecretChanges.ts';
-import type { ComposeChangesServiceChanges } from './composeChangesServiceChanges.ts';
-import type { ComposeChangesVolumeChanges } from './composeChangesVolumeChanges.ts';
+import type { ComposeChangesAddServices } from './composeChangesAddServices';
+import type { ComposeChangesConfigChanges } from './composeChangesConfigChanges';
+import type { ComposeChangesNetworkChanges } from './composeChangesNetworkChanges';
+import type { ComposeChangesRenameServices } from './composeChangesRenameServices';
+import type { ComposeChangesSecretChanges } from './composeChangesSecretChanges';
+import type { ComposeChangesServiceChanges } from './composeChangesServiceChanges';
+import type { ComposeChangesVolumeChanges } from './composeChangesVolumeChanges';
 
 export interface ComposeChanges {
   add_services?: ComposeChangesAddServices;

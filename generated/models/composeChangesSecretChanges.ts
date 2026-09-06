@@ -5,6 +5,6 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { SecretConfig } from './secretConfig.ts';
+import type { SecretConfig } from './secretConfig';
 
 export type ComposeChangesSecretChanges = {[key: string]: SecretConfig | null};

@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { VolumeDriverOpts } from './volumeDriverOpts.ts';
-import type { VolumeLabels } from './volumeLabels.ts';
-import type { VolumeUsage } from './volumeUsage.ts';
+import type { VolumeDriverOpts } from './volumeDriverOpts';
+import type { VolumeLabels } from './volumeLabels';
+import type { VolumeUsage } from './volumeUsage';
 
 export interface Volume {
   created?: string;

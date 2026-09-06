@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ImageConfig } from './imageConfig.ts';
-import type { RootFS } from './rootFS.ts';
+import type { ImageConfig } from './imageConfig';
+import type { RootFS } from './rootFS';
 
 export interface ImageInspectInfo {
   architecture: string;

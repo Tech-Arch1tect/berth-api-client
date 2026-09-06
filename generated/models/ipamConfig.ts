@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { IpamPool } from './ipamPool.ts';
+import type { IpamPool } from './ipamPool';
 
 export interface IpamConfig {
   config?: IpamPool[];

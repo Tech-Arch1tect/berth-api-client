@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ImageScan } from './imageScan.ts';
-import type { ImageVulnerability } from './imageVulnerability.ts';
+import type { ImageScan } from './imageScan';
+import type { ImageVulnerability } from './imageVulnerability';
 
 export interface ScanComparison {
   base_only_images: string[];

@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { AuthMessageData } from './authMessageData.ts';
-import type { Error } from './error.ts';
-import type { Meta } from './meta.ts';
+import type { AuthMessageData } from './authMessageData';
+import type { Error } from './error';
+import type { Meta } from './meta';
 
 export interface ResponseAuthMessageData {
   data: AuthMessageData;

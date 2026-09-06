@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { PerImageTrend } from './perImageTrend.ts';
-import type { ScanTrendPoint } from './scanTrendPoint.ts';
+import type { PerImageTrend } from './perImageTrend';
+import type { ScanTrendPoint } from './scanTrendPoint';
 
 export interface GetScanTrendData {
   per_image_trend: PerImageTrend[];

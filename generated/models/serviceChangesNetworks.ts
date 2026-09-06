@@ -5,6 +5,6 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ServiceNetworkConfig } from './serviceNetworkConfig.ts';
+import type { ServiceNetworkConfig } from './serviceNetworkConfig';
 
 export type ServiceChangesNetworks = {[key: string]: ServiceNetworkConfig | null};

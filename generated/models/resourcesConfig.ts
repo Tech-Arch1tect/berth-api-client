@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ResourceLimits2 } from './resourceLimits2.ts';
+import type { ResourceLimits2 } from './resourceLimits2';
 
 export interface ResourcesConfig {
   limits?: ResourceLimits2 | null;

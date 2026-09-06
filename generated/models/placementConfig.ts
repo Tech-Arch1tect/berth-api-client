@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { PlacementPreference } from './placementPreference.ts';
+import type { PlacementPreference } from './placementPreference';
 
 export interface PlacementConfig {
   constraints?: string[];

@@ -5,6 +5,6 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { VolumeConfig } from './volumeConfig.ts';
+import type { VolumeConfig } from './volumeConfig';
 
 export type ComposeChangesVolumeChanges = {[key: string]: VolumeConfig | null};

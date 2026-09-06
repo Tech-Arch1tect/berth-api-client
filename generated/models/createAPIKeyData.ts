@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { APIKeyInfo } from './aPIKeyInfo.ts';
+import type { APIKeyInfo } from './aPIKeyInfo';
 
 export interface CreateAPIKeyData {
   api_key: APIKeyInfo;

@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { SessionItem } from './sessionItem.ts';
+import type { SessionItem } from './sessionItem';
 
 export interface GetSessionsData {
   sessions: SessionItem[];

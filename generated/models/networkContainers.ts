@@ -5,6 +5,6 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { NetworkEndpoint } from './networkEndpoint.ts';
+import type { NetworkEndpoint } from './networkEndpoint';
 
 export type NetworkContainers = {[key: string]: NetworkEndpoint};

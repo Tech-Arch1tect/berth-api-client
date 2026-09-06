@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { DeleteAllStackResult } from './deleteAllStackResult.ts';
-import type { HistoryState } from './historyState.ts';
+import type { DeleteAllStackResult } from './deleteAllStackResult';
+import type { HistoryState } from './historyState';
 
 export interface DeleteAllResult {
   after: HistoryState;

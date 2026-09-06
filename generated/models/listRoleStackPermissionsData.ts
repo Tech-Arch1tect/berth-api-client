@@ -5,10 +5,10 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { PermissionInfo } from './permissionInfo.ts';
-import type { RoleInfo } from './roleInfo.ts';
-import type { ServerInfo2 } from './serverInfo2.ts';
-import type { StackPermissionRule } from './stackPermissionRule.ts';
+import type { PermissionInfo } from './permissionInfo';
+import type { RoleInfo } from './roleInfo';
+import type { ServerInfo2 } from './serverInfo2';
+import type { StackPermissionRule } from './stackPermissionRule';
 
 export interface ListRoleStackPermissionsData {
   permissionRules: StackPermissionRule[];

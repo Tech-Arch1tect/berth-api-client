@@ -5,12 +5,12 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { BuildCacheSummary } from './buildCacheSummary.ts';
-import type { ContainerSummary } from './containerSummary.ts';
-import type { ImageSummary } from './imageSummary.ts';
-import type { NetworkSummary } from './networkSummary.ts';
-import type { SystemInfo } from './systemInfo.ts';
-import type { VolumeSummary } from './volumeSummary.ts';
+import type { BuildCacheSummary } from './buildCacheSummary';
+import type { ContainerSummary } from './containerSummary';
+import type { ImageSummary } from './imageSummary';
+import type { NetworkSummary } from './networkSummary';
+import type { SystemInfo } from './systemInfo';
+import type { VolumeSummary } from './volumeSummary';
 
 export interface MaintenanceInfo {
   build_cache_summary: BuildCacheSummary;

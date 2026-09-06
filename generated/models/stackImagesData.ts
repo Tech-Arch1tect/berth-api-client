@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ContainerImageDetails } from './containerImageDetails.ts';
+import type { ContainerImageDetails } from './containerImageDetails';
 
 export interface StackImagesData {
   images: ContainerImageDetails[];

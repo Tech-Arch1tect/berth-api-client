@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { RoleInfo } from './roleInfo.ts';
+import type { RoleInfo } from './roleInfo';
 
 export interface UserInfo {
   created_at: string;

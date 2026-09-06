@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ImageScan } from './imageScan.ts';
+import type { ImageScan } from './imageScan';
 
 export interface StartScanData {
   scan: ImageScan;

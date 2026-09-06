@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { NetworkIPAMConfig } from './networkIPAMConfig.ts';
+import type { NetworkIPAMConfig } from './networkIPAMConfig';
 
 export interface NetworkIPAM {
   config?: NetworkIPAMConfig[];

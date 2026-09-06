@@ -5,10 +5,10 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { PlacementConfig } from './placementConfig.ts';
-import type { ResourcesConfig } from './resourcesConfig.ts';
-import type { RestartPolicyConfig } from './restartPolicyConfig.ts';
-import type { UpdateRollbackConfig } from './updateRollbackConfig.ts';
+import type { PlacementConfig } from './placementConfig';
+import type { ResourcesConfig } from './resourcesConfig';
+import type { RestartPolicyConfig } from './restartPolicyConfig';
+import type { UpdateRollbackConfig } from './updateRollbackConfig';
 
 export interface DeployConfig {
   /** @nullable */

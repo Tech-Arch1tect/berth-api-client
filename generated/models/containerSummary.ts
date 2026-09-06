@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { Amount } from './amount.ts';
-import type { ContainerInfo } from './containerInfo.ts';
+import type { Amount } from './amount';
+import type { ContainerInfo } from './containerInfo';
 
 export interface ContainerSummary {
   containers: ContainerInfo[];

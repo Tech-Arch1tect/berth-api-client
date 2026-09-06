@@ -5,10 +5,10 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { DeletedAt } from './deletedAt.ts';
-import type { ImageVulnerability } from './imageVulnerability.ts';
-import type { ScanScope } from './scanScope.ts';
-import type { ScanServiceImage } from './scanServiceImage.ts';
+import type { DeletedAt } from './deletedAt';
+import type { ImageVulnerability } from './imageVulnerability';
+import type { ScanScope } from './scanScope';
+import type { ScanServiceImage } from './scanServiceImage';
 
 export interface ImageScan {
   agent_scan_id: string;

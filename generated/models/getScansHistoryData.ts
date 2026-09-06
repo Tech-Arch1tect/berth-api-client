@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ScanWithSummary } from './scanWithSummary.ts';
+import type { ScanWithSummary } from './scanWithSummary';
 
 export interface GetScansHistoryData {
   page: number;

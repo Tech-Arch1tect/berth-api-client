@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { BackupFileEntry } from './backupFileEntry.ts';
+import type { BackupFileEntry } from './backupFileEntry';
 
 export interface BackupFileListing {
   entries: BackupFileEntry[];

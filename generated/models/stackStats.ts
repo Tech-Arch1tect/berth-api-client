@@ -5,8 +5,8 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { ContainerStats } from './containerStats.ts';
-import type { HostStats } from './hostStats.ts';
+import type { ContainerStats } from './containerStats';
+import type { HostStats } from './hostStats';
 
 export interface StackStats {
   collected_at: string;

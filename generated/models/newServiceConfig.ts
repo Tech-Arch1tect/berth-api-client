@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { NewServiceConfigEnvironment } from './newServiceConfigEnvironment.ts';
-import type { PortMapping } from './portMapping.ts';
-import type { VolumeMount2 } from './volumeMount2.ts';
+import type { NewServiceConfigEnvironment } from './newServiceConfigEnvironment';
+import type { PortMapping } from './portMapping';
+import type { VolumeMount2 } from './volumeMount2';
 
 export interface NewServiceConfig {
   environment?: NewServiceConfigEnvironment;

@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { MaintenancePermissions } from './maintenancePermissions.ts';
+import type { MaintenancePermissions } from './maintenancePermissions';
 
 export interface PermissionsData {
   maintenance: MaintenancePermissions;

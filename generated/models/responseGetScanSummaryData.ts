@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { Error } from './error.ts';
-import type { GetScanSummaryData } from './getScanSummaryData.ts';
-import type { Meta } from './meta.ts';
+import type { Error } from './error';
+import type { GetScanSummaryData } from './getScanSummaryData';
+import type { Meta } from './meta';
 
 export interface ResponseGetScanSummaryData {
   data: GetScanSummaryData;

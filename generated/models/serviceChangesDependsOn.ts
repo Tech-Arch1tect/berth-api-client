@@ -5,6 +5,6 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { DependsOnConfig } from './dependsOnConfig.ts';
+import type { DependsOnConfig } from './dependsOnConfig';
 
 export type ServiceChangesDependsOn = {[key: string]: DependsOnConfig};

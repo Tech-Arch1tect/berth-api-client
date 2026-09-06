@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { AgentAuthorityData } from './agentAuthorityData.ts';
-import type { Error } from './error.ts';
-import type { Meta } from './meta.ts';
+import type { AgentAuthorityData } from './agentAuthorityData';
+import type { Error } from './error';
+import type { Meta } from './meta';
 
 export interface ResponseAgentAuthorityData {
   data: AgentAuthorityData;

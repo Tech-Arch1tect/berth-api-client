@@ -5,7 +5,7 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { NetworkInfoLabels } from './networkInfoLabels.ts';
+import type { NetworkInfoLabels } from './networkInfoLabels';
 
 export interface NetworkInfo {
   created: string;

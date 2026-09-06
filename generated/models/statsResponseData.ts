@@ -5,9 +5,9 @@
  * Berth: Opinionated docker compose stack management API
  * OpenAPI spec version: 1.0.0
  */
-import type { EventTypeCount } from './eventTypeCount.ts';
-import type { StatsResponseDataEventsByCategory } from './statsResponseDataEventsByCategory.ts';
-import type { StatsResponseDataEventsBySeverity } from './statsResponseDataEventsBySeverity.ts';
+import type { EventTypeCount } from './eventTypeCount';
+import type { StatsResponseDataEventsByCategory } from './statsResponseDataEventsByCategory';
+import type { StatsResponseDataEventsBySeverity } from './statsResponseDataEventsBySeverity';
 
 export interface StatsResponseData {
   events_by_category: StatsResponseDataEventsByCategory;
