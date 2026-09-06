@@ -406,7 +406,7 @@ export const getPutApiV1AdminS3BucketsIdUrl = (id: number,) => {
 }
 
 /**
- * Updates the bucket configuration; an empty secret access key keeps the stored one
+ * Updates the bucket configuration. Endpoint or bucket-name changes require exact empty backup history on every assigned server; an empty secret access key keeps the stored one
  * @summary Update an S3 bucket configuration
  */
 export const putApiV1AdminS3BucketsId = async (id: number,

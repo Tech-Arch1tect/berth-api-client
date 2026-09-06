@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0.0
  */
 
+export * from './abandonBackupStorageResult.ts';
 export * from './addScopeRequest.ts';
 export * from './adminCreateServerData.ts';
 export * from './adminListServersData.ts';
@@ -73,6 +74,8 @@ export * from './createStackData.ts';
 export * from './createStackPermissionRequest.ts';
 export * from './createStackRequest.ts';
 export * from './createUserRequest.ts';
+export * from './deleteAllResult.ts';
+export * from './deleteAllStackResult.ts';
 export * from './deleteCredentialMessageData.ts';
 export * from './deletedAt.ts';
 export * from './deleteRequest.ts';
@@ -201,6 +204,7 @@ export * from './renameRequest.ts';
 export * from './resourceLimits.ts';
 export * from './resourceLimits2.ts';
 export * from './resourcesConfig.ts';
+export * from './responseAbandonBackupStorageResult.ts';
 export * from './responseAdminCreateServerData.ts';
 export * from './responseAdminListServersData.ts';
 export * from './responseAdminUpdateServerData.ts';
@@ -220,6 +224,7 @@ export * from './responseCanCreateStackData.ts';
 export * from './responseCompareScanData.ts';
 export * from './responseCreateAPIKeyData.ts';
 export * from './responseCreateStackData.ts';
+export * from './responseDeleteAllResult.ts';
 export * from './responseDeleteCredentialMessageData.ts';
 export * from './responseDeleteResponse.ts';
 export * from './responseDeleteResult.ts';

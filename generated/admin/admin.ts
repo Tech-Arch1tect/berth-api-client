@@ -1942,7 +1942,7 @@ export const usePostApiV1AdminServers = <TError = ResponseEmpty,
 }
 
 /**
- * Delete a server connection. Requires admin access.
+ * Delete a server connection after confirming its agent-local backup history is empty. Backup repository data is never deleted by this action. Requires admin access.
  * @summary Delete a server
  */
 export const deleteApiV1AdminServersId = async (id: number, options?: Parameters<typeof apiClient>[1]): Promise<ResponseMessageData2> => {

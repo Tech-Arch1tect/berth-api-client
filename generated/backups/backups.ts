@@ -28,7 +28,9 @@ import type {
   GetApiV1ServersServeridStacksStacknameBackupsBackupidDownloadParams,
   GetApiV1ServersServeridStacksStacknameBackupsBackupidFilesParams,
   GetApiV1ServersServeridStacksStacknameBackupsParams,
+  ResponseAbandonBackupStorageResult,
   ResponseBackupFileListing,
+  ResponseDeleteAllResult,
   ResponseDeleteResponse,
   ResponseEmpty,
   ResponseHistoryState,
@@ -161,7 +163,149 @@ export function useGetApiV1AdminServersIdBackupStorage<TData = Awaited<ReturnTyp
 
 
 
-export const getGetApiV1BackupsUrl = () => {
+export const getPostApiV1AdminServersIdBackupStorageAbandonUrl = (id: number,) => {
+
+
+
+
+  return `/api/v1/admin/servers/${id}/backup-storage/abandon`
+}
+
+/**
+ * Removes the agent-local backup history used by Berth without reading or deleting repository data. Returns exact full or partial results; an HTTP 200 does not mean every history entry was removed. The request body must contain zero bytes. Requires admin server write access.
+ * @summary Abandon a server's backup history
+ */
+export const postApiV1AdminServersIdBackupStorageAbandon = async (id: number, options?: Parameters<typeof apiClient>[1]): Promise<ResponseAbandonBackupStorageResult> => {
+
+  return apiClient<ResponseAbandonBackupStorageResult>(getPostApiV1AdminServersIdBackupStorageAbandonUrl(id),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getPostApiV1AdminServersIdBackupStorageAbandonMutationOptions = <TError = ResponseEmpty,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageAbandon>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
+): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageAbandon>>, TError,{id: number}, TContext> => {
+
+const mutationKey = ['postApiV1AdminServersIdBackupStorageAbandon'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageAbandon>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
+
+          return  postApiV1AdminServersIdBackupStorageAbandon(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostApiV1AdminServersIdBackupStorageAbandonMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageAbandon>>>
+
+    export type PostApiV1AdminServersIdBackupStorageAbandonMutationError = ResponseEmpty
+
+    /**
+ * @summary Abandon a server's backup history
+ */
+export const usePostApiV1AdminServersIdBackupStorageAbandon = <TError = ResponseEmpty,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageAbandon>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageAbandon>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
+      return useMutation(getPostApiV1AdminServersIdBackupStorageAbandonMutationOptions(options), queryClient);
+    }
+    export const getPostApiV1AdminServersIdBackupStorageDeleteAllUrl = (id: number,) => {
+
+
+
+
+  return `/api/v1/admin/servers/${id}/backup-storage/delete-all`
+}
+
+/**
+ * Attempts every stack repository using the server's stored backup password and storage assignment. Returns exact full or partial results; an HTTP 200 does not mean every backup was deleted. Requires admin server write access.
+ * @summary Delete every backup for a server
+ */
+export const postApiV1AdminServersIdBackupStorageDeleteAll = async (id: number, options?: Parameters<typeof apiClient>[1]): Promise<ResponseDeleteAllResult> => {
+
+  return apiClient<ResponseDeleteAllResult>(getPostApiV1AdminServersIdBackupStorageDeleteAllUrl(id),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getPostApiV1AdminServersIdBackupStorageDeleteAllMutationOptions = <TError = ResponseEmpty,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageDeleteAll>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
+): UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageDeleteAll>>, TError,{id: number}, TContext> => {
+
+const mutationKey = ['postApiV1AdminServersIdBackupStorageDeleteAll'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageDeleteAll>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
+
+          return  postApiV1AdminServersIdBackupStorageDeleteAll(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostApiV1AdminServersIdBackupStorageDeleteAllMutationResult = NonNullable<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageDeleteAll>>>
+
+    export type PostApiV1AdminServersIdBackupStorageDeleteAllMutationError = ResponseEmpty
+
+    /**
+ * @summary Delete every backup for a server
+ */
+export const usePostApiV1AdminServersIdBackupStorageDeleteAll = <TError = ResponseEmpty,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageDeleteAll>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postApiV1AdminServersIdBackupStorageDeleteAll>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
+      return useMutation(getPostApiV1AdminServersIdBackupStorageDeleteAllMutationOptions(options), queryClient);
+    }
+    export const getGetApiV1BackupsUrl = () => {
 
 
 
