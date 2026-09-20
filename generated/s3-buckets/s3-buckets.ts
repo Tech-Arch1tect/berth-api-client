@@ -28,6 +28,7 @@ import type {
   CreateRequest,
   ResponseBucketResponse,
   ResponseBucketResponse2,
+  ResponseDeleteResponse,
   ResponseEmpty,
   UpdateRequest
 } from '../models';
@@ -238,9 +239,9 @@ export const usePostApiV1AdminS3Buckets = <TError = ResponseEmpty,
  * Deletes the stored credentials and settings; the bucket and its contents in S3 are untouched
  * @summary Delete an S3 bucket configuration
  */
-export const deleteApiV1AdminS3BucketsId = async (id: number, options?: Parameters<typeof apiClient>[1]): Promise<ResponseEmpty> => {
+export const deleteApiV1AdminS3BucketsId = async (id: number, options?: Parameters<typeof apiClient>[1]): Promise<ResponseDeleteResponse> => {
 
-  return apiClient<ResponseEmpty>(getDeleteApiV1AdminS3BucketsIdUrl(id),
+  return apiClient<ResponseDeleteResponse>(getDeleteApiV1AdminS3BucketsIdUrl(id),
   {
     ...options,
     method: 'DELETE'

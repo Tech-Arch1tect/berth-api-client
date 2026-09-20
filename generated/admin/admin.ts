@@ -29,6 +29,7 @@ import type {
   CreateRoleRequest,
   CreateStackPermissionRequest,
   CreateUserRequest,
+  DeleteApiV1AdminServersIdParams,
   ExportRequest,
   GetApiV1AdminOperationLogsParams,
   GetApiV1AdminPermissionsParams,
@@ -1933,21 +1934,30 @@ export const usePostApiV1AdminServers = <TError = ResponseEmpty,
       > => {
       return useMutation(getPostApiV1AdminServersMutationOptions(options), queryClient);
     }
-    export const getDeleteApiV1AdminServersIdUrl = (id: number,) => {
+    export const getDeleteApiV1AdminServersIdUrl = (id: number,
+    params?: DeleteApiV1AdminServersIdParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
 
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value))
+    }
+  });
 
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/admin/servers/${id}`
+  return stringifiedParams.length > 0 ? `/api/v1/admin/servers/${id}?${stringifiedParams}` : `/api/v1/admin/servers/${id}`
 }
 
 /**
  * Delete a server connection after confirming its agent-local backup history is empty. Backup repository data is never deleted by this action. Requires admin access.
  * @summary Delete a server
  */
-export const deleteApiV1AdminServersId = async (id: number, options?: Parameters<typeof apiClient>[1]): Promise<ResponseMessageData2> => {
+export const deleteApiV1AdminServersId = async (id: number,
+    params?: DeleteApiV1AdminServersIdParams, options?: Parameters<typeof apiClient>[1]): Promise<ResponseMessageData2> => {
 
-  return apiClient<ResponseMessageData2>(getDeleteApiV1AdminServersIdUrl(id),
+  return apiClient<ResponseMessageData2>(getDeleteApiV1AdminServersIdUrl(id,params),
   {
     ...options,
     method: 'DELETE'
@@ -1961,8 +1971,8 @@ export const deleteApiV1AdminServersId = async (id: number, options?: Parameters
 
 
 export const getDeleteApiV1AdminServersIdMutationOptions = <TError = ResponseEmpty,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
-): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number;params?: DeleteApiV1AdminServersIdParams}, TContext>, request?: SecondParameter<typeof apiClient>}
+): UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number;params?: DeleteApiV1AdminServersIdParams}, TContext> => {
 
 const mutationKey = ['deleteApiV1AdminServersId'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1974,10 +1984,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, {id: number}> = (props) => {
-          const {id} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, {id: number;params?: DeleteApiV1AdminServersIdParams}> = (props) => {
+          const {id,params} = props ?? {};
 
-          return  deleteApiV1AdminServersId(id,requestOptions)
+          return  deleteApiV1AdminServersId(id,params,requestOptions)
         }
 
 
@@ -1995,11 +2005,11 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary Delete a server
  */
 export const useDeleteApiV1AdminServersId = <TError = ResponseEmpty,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof apiClient>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteApiV1AdminServersId>>, TError,{id: number;params?: DeleteApiV1AdminServersIdParams}, TContext>, request?: SecondParameter<typeof apiClient>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteApiV1AdminServersId>>,
         TError,
-        {id: number},
+        {id: number;params?: DeleteApiV1AdminServersIdParams},
         TContext
       > => {
       return useMutation(getDeleteApiV1AdminServersIdMutationOptions(options), queryClient);

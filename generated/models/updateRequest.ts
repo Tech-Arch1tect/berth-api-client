@@ -12,5 +12,5 @@ export interface UpdateRequest {
   endpoint: string;
   label: string;
   region: string;
-  secret_access_key: string;
+  secret_access_key?: string;
 }

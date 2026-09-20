@@ -31,7 +31,7 @@ import type {
   ResponseAbandonBackupStorageResult,
   ResponseBackupFileListing,
   ResponseDeleteAllResult,
-  ResponseDeleteResponse,
+  ResponseDeleteResponse2,
   ResponseEmpty,
   ResponseHistoryState,
   ResponseListResponse,
@@ -619,9 +619,9 @@ export const usePostApiV1ServersServeridStacksStacknameBackupsRebuild = <TError 
  */
 export const deleteApiV1ServersServeridStacksStacknameBackupsBackupid = async (serverid: number,
     stackname: string,
-    backupid: string, options?: Parameters<typeof apiClient>[1]): Promise<ResponseDeleteResponse> => {
+    backupid: string, options?: Parameters<typeof apiClient>[1]): Promise<ResponseDeleteResponse2> => {
 
-  return apiClient<ResponseDeleteResponse>(getDeleteApiV1ServersServeridStacksStacknameBackupsBackupidUrl(serverid,stackname,backupid),
+  return apiClient<ResponseDeleteResponse2>(getDeleteApiV1ServersServeridStacksStacknameBackupsBackupidUrl(serverid,stackname,backupid),
   {
     ...options,
     method: 'DELETE'
