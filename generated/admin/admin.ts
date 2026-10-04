@@ -1316,7 +1316,7 @@ export const getPostApiV1AdminRolesRoleIdStackPermissionsUrl = (roleId: number,)
 }
 
 /**
- * Creates a new permission rule for a role on a server with a stack pattern. Requires admin permissions.
+ * Creates a new rule for a role-eligible permission on a server with a stack pattern. Requires admin permissions.
  * @summary Create a role stack permission
  */
 export const postApiV1AdminRolesRoleIdStackPermissions = async (roleId: number,
