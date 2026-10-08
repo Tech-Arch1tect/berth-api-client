@@ -7,7 +7,8 @@
  */
 
 export interface TerminalCloseMessage {
-  exit_code?: number;
+  /** @nullable */
+  exit_code?: number | null;
   session_id: string;
   timestamp?: string;
   /** Always terminal_close */

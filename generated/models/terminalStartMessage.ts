@@ -8,6 +8,8 @@
 
 export interface TerminalStartMessage {
   cols?: number;
+  /** Optional command arguments executed directly on the PTY; omitted or empty starts the default interactive shell */
+  command?: string[];
   container_name?: string;
   rows?: number;
   service_name: string;
